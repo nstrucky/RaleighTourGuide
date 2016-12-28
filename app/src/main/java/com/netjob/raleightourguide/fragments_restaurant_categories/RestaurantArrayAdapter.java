@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.netjob.raleightourguide.R;
@@ -42,11 +43,14 @@ public class RestaurantArrayAdapter extends ArrayAdapter {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
+
         TextView textView = (TextView) listItemView.findViewById(R.id.textView_restaurant_name);
         TextView textView1 = (TextView) listItemView.findViewById(R.id.textView_restaurant_phone);
         TextView textView2 = (TextView) listItemView.findViewById(R.id.textView_restaurant_description);
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.imageView_restaurant_preview);
 
+
+//        listItemView.setBackground(getContext().getResources().getDrawable(currentRestaurant.getPreviewImageID()));
 
         textView.setText(currentRestaurant.getName());
         textView1.setText(currentRestaurant.getPhoneNumber());

@@ -30,17 +30,25 @@ public class AsianFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-        ArrayList<Restaurant> testArrayList = new ArrayList<>();
+        ArrayList<Restaurant> restaurantArrayList = new ArrayList<>();
 
-        testArrayList.add(new Restaurant("Buku", "919-555-6512", "This is a test", R.drawable.dummyimage_restaurant));
-        testArrayList.add(new Restaurant("Masu", "612-555-5645", "This is a test", R.drawable.dummyimage_restaurant));
-        testArrayList.add(new Restaurant("Sushi Blues", "919-555-4521", "This is a test", R.drawable.dummyimage_restaurant));
+        restaurantArrayList.add(new Restaurant("Buku",
+                getString(R.string.phoneNumber_buku),
+                getString(R.string.description_buku),
+                R.drawable.dummyimage_restaurant));
+
+        restaurantArrayList.add(new Restaurant("Masu", "612-555-5645", "This is a test", R.drawable.dummyimage_restaurant));
+
+        restaurantArrayList.add(new Restaurant("Sushi Blues",
+                getString(R.string.phoneNumber_sushiblues),
+                getString(R.string.description_sushiblues),
+                R.drawable.dummyimage_restaurant));
 
         View fragmentRootView = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
 
         ListView listView = (ListView) fragmentRootView.findViewById(R.id.listview_restaurants);
 
-        RestaurantArrayAdapter arrayAdapter = new RestaurantArrayAdapter(getActivity(), testArrayList);
+        RestaurantArrayAdapter arrayAdapter = new RestaurantArrayAdapter(getActivity(), restaurantArrayList);
 
         listView.setAdapter(arrayAdapter);
 

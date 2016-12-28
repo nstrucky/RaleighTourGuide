@@ -13,4 +13,21 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- Restaurant Descriptions -->
+
+    <string name="description_buku">
+        Located at the corner of Wilmington and Davie Street, bu•ku: Global Street Food is a local restaurant telling a global story. Inspired by the pushcarts of street vendors in cities across the globe, we harvest an array of unique and distinct flavors and present them authentically in a virtual kaleidoscope of plates. The common link being, these are foods that people love.
+
+    </string>
+
+    <string name="description_sushiblues">
+        One of the triangle\'s coolest night spots, Sushi Blues Cafe offers some of the best Sushi and Japanese food, along a softly lit blues/jazz atmosphere.
+    </string>
+
+    <!-- Restaurant Phone Numbers -->
+
+    <string name="phoneNumber_buku">919-834-6963</string>
+    <string name="phoneNumber_sushiblues">919-664-8061</string>
 </resources>
