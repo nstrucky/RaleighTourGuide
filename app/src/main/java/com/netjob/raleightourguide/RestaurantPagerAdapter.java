@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.netjob.raleightourguide.fragments_restaurant_categories.AsianFragment;
 import com.netjob.raleightourguide.fragments_restaurant_categories.ItalianFragment;
 import com.netjob.raleightourguide.fragments_restaurant_categories.MexicanFragment;
+import com.netjob.raleightourguide.fragments_restaurant_categories.OtherFragment;
+import com.netjob.raleightourguide.fragments_restaurant_categories.SouthernFragment;
 
 /**
  * Created by root on 12/27/16.
@@ -14,8 +16,8 @@ import com.netjob.raleightourguide.fragments_restaurant_categories.MexicanFragme
 
 public class RestaurantPagerAdapter extends FragmentPagerAdapter {
 
-    private final int RESTAURANT_COUNT = 3;
-    private final String[] categoryNames = {"Asian", "Italian", "Mexican"};
+    private final int RESTAURANT_COUNT = 5;
+    private final String[] categoryNames = {"Asian", "Italian", "Mexican", "Southern", "Other"};
 
     public RestaurantPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -39,6 +41,12 @@ public class RestaurantPagerAdapter extends FragmentPagerAdapter {
 
             case 2:
                 return new MexicanFragment();
+
+            case 3:
+                return new SouthernFragment();
+
+            case 4:
+                return new OtherFragment();
 
         }
 
