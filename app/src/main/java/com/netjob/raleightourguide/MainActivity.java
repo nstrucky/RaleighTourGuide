@@ -1,5 +1,6 @@
 package com.netjob.raleightourguide;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,15 +23,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -80,17 +72,24 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        switch (id) {
 
-        } else if (id == R.id.nav_slideshow) {
+            case R.id.nav_hotels:
+                break;
 
-        } else if (id == R.id.nav_manage) {
+            case R.id.nav_restaurants:
+                Intent intent = new Intent(this, RestaurantsActivity.class);
+                startActivity(intent);
+                break;
 
-        } else if (id == R.id.nav_share) {
+            case R.id.nav_entertainment:
+                break;
 
-        } else if (id == R.id.nav_send) {
+            case R.id.nav_landmarks:
+                break;
+
+            case R.id.nav_emergency:
+                break;
 
         }
 
