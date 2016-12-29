@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +30,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,31 +40,15 @@ import java.util.ArrayList;
 
 public class AsianFragment extends Fragment {
 
-    String mPhotoReferenceID = "placeholder";
-    Bitmap mBitmap;
     ArrayList<Restaurant> mRestaurantArrayList;
+    List<Bitmap> mBitmaps = new ArrayList<>();
+    ListView listView;
+    RestaurantArrayAdapter arrayAdapter;
 
     public AsianFragment() {
         // Required empty public constructor
     }
 
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-    }
-
-    private void photoTasks(String restaurantName) {
-        PhotoIDAcquisitionTask photoIDAcquisition = new PhotoIDAcquisitionTask();
-        photoIDAcquisition.execute(restaurantName);
-//        Log.i("PHOTO ID BEFORE EXEC2", mPhotoReferenceID);
-
-
-
-
-    }
 
 
     @Override
@@ -92,14 +77,19 @@ public class AsianFragment extends Fragment {
                 getString(R.string.description_sushiblues),
                 getString(R.string.address_sushiBlues)));
 
-        photoTasks(mRestaurantArrayList.get(0).getName());
+        for (Restaurant restaurant : mRestaurantArrayList) {
+
+            PhotoIDAcquisitionTask photoIDAcquisition = new PhotoIDAcquisitionTask();
+            photoIDAcquisition.execute(restaurant);
+        }
 
 
-        final ListView listView = (ListView) fragmentRootView.findViewById(R.id.listview_restaurants);
 
-        RestaurantArrayAdapter arrayAdapter = new RestaurantArrayAdapter(getActivity(), mRestaurantArrayList);
 
-        listView.setAdapter(arrayAdapter);
+        listView = (ListView) fragmentRootView.findViewById(R.id.listview_restaurants);
+
+        arrayAdapter = new RestaurantArrayAdapter(getActivity(), mRestaurantArrayList);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -121,17 +111,19 @@ public class AsianFragment extends Fragment {
 
 
 
-    class PhotoIDAcquisitionTask extends AsyncTask<String, Void, String> {
+    class PhotoIDAcquisitionTask extends AsyncTask<Restaurant, Void, Restaurant> {
 
+        Restaurant passedRestaurant = null;
 
         @Override
-        protected String doInBackground(String... params) {
+        protected Restaurant doInBackground(Restaurant... params) {
+            passedRestaurant = params[0];
             HttpURLConnection httpURLConnection = null;
             StringBuffer buffer = null;
             BufferedReader bufferedReader = null;
             String jsonToParse = null;
 
-            String keyword_place = params[0];
+            String keyword_place = passedRestaurant.getName();
             final String PARAM_KEY = "key";
             final String PARAM_LOCATION = "location";
             final String PARAM_KEYWORD = "keyword";
@@ -209,7 +201,9 @@ public class AsianFragment extends Fragment {
 
                 if (photoReferenceID != null) {
                     Log.i("PHOTO ID BEFORE RETURN", photoReferenceID);//++++++++++++++++++++++++++++++++++
-                    return photoReferenceID;
+
+                    passedRestaurant.setPhotoReferenceID(photoReferenceID);
+                    return passedRestaurant;
                 }
 
             } catch (JSONException e) {
@@ -219,30 +213,28 @@ public class AsianFragment extends Fragment {
         }//doInBackground()
 
         @Override
-        protected void onPostExecute(String s) {
+        protected void onPostExecute(Restaurant s) {
             super.onPostExecute(s);
 
             PhotoRetrievalTask photoRetrievalTask = new PhotoRetrievalTask();
 
             photoRetrievalTask.execute(s);
 
-            Log.i("PHOTO ID POST EXEC1", s);//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//            mPhotoReferenceID = s;
-//            if (mPhotoReferenceID != null)
-//                Log.i("PHOTO ID", mPhotoReferenceID);
+            Log.i("PHOTO ID POST EXEC1", s.getPhotoReferenceID());//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         }
     }
 
-    class PhotoRetrievalTask extends AsyncTask<String, Void, Bitmap> {
-
+    class PhotoRetrievalTask extends AsyncTask<Restaurant, Void, Bitmap> {
+        Restaurant passedRestaurant = null;
 
         @Override
-        protected Bitmap doInBackground(String... params) {
+        protected Bitmap doInBackground(Restaurant... params) {
 
+            passedRestaurant = params[0];
             URL url = null;
             Bitmap bitmap = null;
 //            HttpURLConnection httpURLConnection = null;
-            String photoID = params[0];
+            String photoID = passedRestaurant.getPhotoReferenceID();
             if (photoID != null)
             Log.i("PHOTO ID TASK2", photoID);
 
@@ -251,7 +243,7 @@ public class AsianFragment extends Fragment {
 //                httpURLConnection = (HttpURLConnection) url.openConnection();
 //                httpURLConnection.setRequestMethod("GET");
 //                httpURLConnection.connect();
-//
+
 //                InputStream inputStream = httpURLConnection.getInputStream();
 
                 bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
@@ -265,11 +257,8 @@ public class AsianFragment extends Fragment {
 //                    httpURLConnection.disconnect();
 //
 //                }
-
             }
-
                 return bitmap;
-
         }
 
         @Override
@@ -279,15 +268,19 @@ public class AsianFragment extends Fragment {
             if (bitmap != null) {
                 Log.i("BITMAP IN POSTEXEC", "NOT NULL");
             }
-            setBitMap(bitmap);
+            setRestBitmap(bitmap, passedRestaurant);
 
         }
     }
 
-    public void setBitMap(Bitmap bitMap) {
+    public void setRestBitmap(Bitmap bitMap, Restaurant restaurant) {
 
-        Log.i("BITMAP", bitMap.toString());
-        mRestaurantArrayList.get(0).setBitmap(bitMap);
+        restaurant.setBitmap(bitMap);
+        listView.setAdapter(arrayAdapter);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
 }

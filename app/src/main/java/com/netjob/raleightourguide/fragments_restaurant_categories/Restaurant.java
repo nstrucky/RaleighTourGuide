@@ -15,6 +15,7 @@ public class Restaurant {
     private String mDescription;
     private Uri mAddressUri;
     private Bitmap mBitmap;
+    private String mPhotoReferenceID;
 //    private ... mGoogleMapsVariable TODO figure out variable needed to find on maps
 
 
@@ -68,6 +69,14 @@ public class Restaurant {
 
     public void setBitmap(Bitmap bitmap) {
         mBitmap = bitmap;
+    }
+
+    public String getPhotoReferenceID() {
+        return mPhotoReferenceID;
+    }
+
+    public void setPhotoReferenceID(String photoReferenceID) {
+        mPhotoReferenceID = photoReferenceID;
     }
 }
 
