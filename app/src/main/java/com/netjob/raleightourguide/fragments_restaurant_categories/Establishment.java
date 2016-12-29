@@ -8,7 +8,7 @@ import android.widget.ImageView;
  * Created by root on 12/28/16.
  */
 
-public class Restaurant {
+public class Establishment {
 
     private String mName;
     private String mPhoneNumber;
@@ -20,7 +20,7 @@ public class Restaurant {
 
 
 //    TODO learn regular expressions and implement for phone number variable
-    public Restaurant(String name, String phoneNumber, String description, String addressUri) {
+    public Establishment(String name, String phoneNumber, String description, String addressUri) {
         mName = name;
         mPhoneNumber = phoneNumber;
         mDescription = description;
@@ -53,7 +53,6 @@ public class Restaurant {
     public void setDescription(String description) {
         mDescription = description;
     }
-
 
     public Uri getAddressUri() {
         return mAddressUri;

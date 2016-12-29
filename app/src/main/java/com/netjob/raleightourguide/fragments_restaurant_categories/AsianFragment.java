@@ -30,8 +30,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,9 +39,9 @@ import java.util.ListIterator;
 public class AsianFragment extends Fragment {
 
     private final String LOG_TAG = "AsianFragment";
-    ArrayList<Restaurant> mRestaurantArrayList;
+    ArrayList<Establishment> mEstablishmentArrayList;
     ListView listView;
-    RestaurantArrayAdapter arrayAdapter;
+    EstablishmentArrayAdapter arrayAdapter;
 
     public AsianFragment() {
         // Required empty public constructor
@@ -53,47 +51,47 @@ public class AsianFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View fragmentRootView = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
+        View fragmentRootView = inflater.inflate(R.layout.fragment_establishment_list, container, false);
 
-        mRestaurantArrayList = new ArrayList<>();
+        mEstablishmentArrayList = new ArrayList<>();
 
-        mRestaurantArrayList.add(new Restaurant(
+        mEstablishmentArrayList.add(new Establishment(
                 getString(R.string.buku),
                 getString(R.string.phoneNumber_buku),
                 getString(R.string.description_buku),
                 getString(R.string.address_buku)));
 
-        mRestaurantArrayList.add(new Restaurant(
+        mEstablishmentArrayList.add(new Establishment(
                 getString(R.string.davidsDumplings),
                 getString(R.string.phoneNumber_davidsDumplings),
                 getString(R.string.description_davidsDumplings),
                 getString(R.string.address_davidsDumplings)));
 
-        mRestaurantArrayList.add(new Restaurant(
+        mEstablishmentArrayList.add(new Establishment(
                 getString(R.string.sushiBlues),
                 getString(R.string.phoneNumber_sushiblues),
                 getString(R.string.description_sushiblues),
                 getString(R.string.address_sushiBlues)));
 
-        for (Restaurant restaurant : mRestaurantArrayList) {
+        for (Establishment establishment : mEstablishmentArrayList) {
 
             PhotoIDAcquisitionTask photoIDAcquisition = new PhotoIDAcquisitionTask();
-            photoIDAcquisition.execute(restaurant);
+            photoIDAcquisition.execute(establishment);
         }
 
-        listView = (ListView) fragmentRootView.findViewById(R.id.listview_restaurants);
+        listView = (ListView) fragmentRootView.findViewById(R.id.listview_establishments);
 
-        arrayAdapter = new RestaurantArrayAdapter(getActivity(), mRestaurantArrayList);
+        arrayAdapter = new EstablishmentArrayAdapter(getActivity(), mEstablishmentArrayList);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Restaurant selectedRestaurant = (Restaurant) listView.getItemAtPosition(position);
-                String name = selectedRestaurant.getName();
+                Establishment selectedEstablishment = (Establishment) listView.getItemAtPosition(position);
+                String name = selectedEstablishment.getName();
 
                 Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
 
-                Uri restaurantAddressUri = selectedRestaurant.getAddressUri();
+                Uri restaurantAddressUri = selectedEstablishment.getAddressUri();
 
                 Intent addressIntent = new Intent(Intent.ACTION_VIEW, restaurantAddressUri);
                 startActivity(addressIntent);
@@ -103,19 +101,19 @@ public class AsianFragment extends Fragment {
         return fragmentRootView;
     }
 
-    class PhotoIDAcquisitionTask extends AsyncTask<Restaurant, Void, Restaurant> {
+    class PhotoIDAcquisitionTask extends AsyncTask<Establishment, Void, Establishment> {
 
-        Restaurant passedRestaurant = null;
+        Establishment passedEstablishment = null;
 
         @Override
-        protected Restaurant doInBackground(Restaurant... params) {
-            passedRestaurant = params[0];
+        protected Establishment doInBackground(Establishment... params) {
+            passedEstablishment = params[0];
             HttpURLConnection httpURLConnection = null;
             StringBuffer buffer = null;
             BufferedReader bufferedReader = null;
             String jsonToParse = null;
 
-            String keyword_place = passedRestaurant.getName();
+            String keyword_place = passedEstablishment.getName();
             final String PARAM_KEY = "key";
             final String PARAM_LOCATION = "location";
             final String PARAM_KEYWORD = "keyword";
@@ -187,8 +185,8 @@ public class AsianFragment extends Fragment {
                 String photoReferenceID = photos.getString("photo_reference");
 
                 if (photoReferenceID != null) {
-                    passedRestaurant.setPhotoReferenceID(photoReferenceID);
-                    return passedRestaurant;
+                    passedEstablishment.setPhotoReferenceID(photoReferenceID);
+                    return passedEstablishment;
                 }
 
             } catch (JSONException e) {
@@ -198,7 +196,7 @@ public class AsianFragment extends Fragment {
         }//doInBackground()
 
         @Override
-        protected void onPostExecute(Restaurant s) {
+        protected void onPostExecute(Establishment s) {
             super.onPostExecute(s);
 
             PhotoRetrievalTask photoRetrievalTask = new PhotoRetrievalTask();
@@ -206,13 +204,13 @@ public class AsianFragment extends Fragment {
         }
     }
 
-    class PhotoRetrievalTask extends AsyncTask<Restaurant, Void, Bitmap> {
-        Restaurant passedRestaurant = null;
+    class PhotoRetrievalTask extends AsyncTask<Establishment, Void, Bitmap> {
+        Establishment passedEstablishment = null;
 
         @Override
-        protected Bitmap doInBackground(Restaurant... params) {
+        protected Bitmap doInBackground(Establishment... params) {
 
-            passedRestaurant = params[0];
+            passedEstablishment = params[0];
             URL url = null;
             Bitmap bitmap = null;
             HttpURLConnection httpURLConnection = null;
@@ -223,7 +221,7 @@ public class AsianFragment extends Fragment {
             final String PARAM_PHOTOREFERENCE = "photoreference";
             final String PARAM_MAXHEIGHT = "maxheight";
             String key = "AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg";
-            String photoID = passedRestaurant.getPhotoReferenceID();
+            String photoID = passedEstablishment.getPhotoReferenceID();
             String maxheight = "800";
 
 
@@ -266,19 +264,15 @@ public class AsianFragment extends Fragment {
             if (bitmap != null) {
                 Log.i("BITMAP IN POSTEXEC", "NOT NULL");
             }
-            setRestBitmap(bitmap, passedRestaurant);
+            setEstBitmap(bitmap, passedEstablishment);
 
         }
     }
 
-    public void setRestBitmap(Bitmap bitMap, Restaurant restaurant) {
+    public void setEstBitmap(Bitmap bitMap, Establishment establishment) {
 
-        restaurant.setBitmap(bitMap);
+        establishment.setBitmap(bitMap);
         listView.setAdapter(arrayAdapter);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
 }
