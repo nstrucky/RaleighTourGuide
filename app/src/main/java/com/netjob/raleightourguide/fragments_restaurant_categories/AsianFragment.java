@@ -16,6 +16,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.netjob.raleightourguide.BitmapSetter;
+import com.netjob.raleightourguide.MyAsyncParams;
+import com.netjob.raleightourguide.PhotoIDAcquisitionTask;
 import com.netjob.raleightourguide.R;
 
 import org.json.JSONArray;
@@ -36,7 +39,7 @@ import java.util.ArrayList;
  */
 
 
-public class AsianFragment extends Fragment {
+public class AsianFragment extends Fragment implements BitmapSetter {
 
     private final String LOG_TAG = "AsianFragment";
     ArrayList<Establishment> mEstablishmentArrayList;
@@ -76,7 +79,7 @@ public class AsianFragment extends Fragment {
         for (Establishment establishment : mEstablishmentArrayList) {
 
             PhotoIDAcquisitionTask photoIDAcquisition = new PhotoIDAcquisitionTask();
-            photoIDAcquisition.execute(establishment);
+            photoIDAcquisition.execute(new MyAsyncParams(this, establishment));
         }
 
         listView = (ListView) fragmentRootView.findViewById(R.id.listview_establishments);
@@ -101,174 +104,7 @@ public class AsianFragment extends Fragment {
         return fragmentRootView;
     }
 
-    class PhotoIDAcquisitionTask extends AsyncTask<Establishment, Void, Establishment> {
-
-        Establishment passedEstablishment = null;
-
-        @Override
-        protected Establishment doInBackground(Establishment... params) {
-            passedEstablishment = params[0];
-            HttpURLConnection httpURLConnection = null;
-            StringBuffer buffer = null;
-            BufferedReader bufferedReader = null;
-            String jsonToParse = null;
-
-            String keyword_place = passedEstablishment.getName();
-            final String PARAM_KEY = "key";
-            final String PARAM_LOCATION = "location";
-            final String PARAM_KEYWORD = "keyword";
-            final String BASE_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-            final String KEY = "AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg";
-            final String LOCATION = "35.7754,-78.6382";
-
-            Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                    .appendQueryParameter(PARAM_KEY, KEY)
-                    .appendQueryParameter(PARAM_LOCATION, LOCATION)
-                    .appendQueryParameter(PARAM_KEYWORD, keyword_place)
-                    .build();
-            try {
-                URL url = new URL(builtUri.toString());
-
-                httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("GET");
-                httpURLConnection.connect();
-
-                InputStream inputStream = httpURLConnection.getInputStream();
-                buffer = new StringBuffer();
-
-
-                if (inputStream == null) {
-                    return null;
-                }
-
-                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-                String line;
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    buffer.append(line + "\n");
-                }
-
-                if (buffer.length() == 0) {
-                    return null;
-                }
-
-                jsonToParse = buffer.toString();
-                Log.i(LOG_TAG, jsonToParse);
-
-            } catch (MalformedURLException e) {
-                Log.e(LOG_TAG, "Malformed URL Exception", e);
-            } catch (IOException e) {
-                Log.e(LOG_TAG, "IO URL Exception", e);
-            } finally {
-                if (httpURLConnection != null) {
-                    httpURLConnection.disconnect();
-                }
-                if (bufferedReader != null) {
-                    try {
-                        bufferedReader.close();
-                    } catch (IOException e) {
-
-                    }
-                }
-            }
-
-            try {
-                JSONObject jsonObject = new JSONObject(jsonToParse);
-
-                JSONArray results = jsonObject.getJSONArray("results");
-                if (results.length() < 1) {
-                    Log.e(LOG_TAG, "Could not find results for " + keyword_place);
-                    return null;
-                }
-                JSONObject photos = results.getJSONObject(0).getJSONArray("photos").getJSONObject(0);
-                String photoReferenceID = photos.getString("photo_reference");
-
-                if (photoReferenceID != null) {
-                    passedEstablishment.setPhotoReferenceID(photoReferenceID);
-                    return passedEstablishment;
-                }
-
-            } catch (JSONException e) {
-                Log.e(LOG_TAG, "JSON Exception", e);
-            }
-            return null;
-        }//doInBackground()
-
-        @Override
-        protected void onPostExecute(Establishment s) {
-            super.onPostExecute(s);
-
-            PhotoRetrievalTask photoRetrievalTask = new PhotoRetrievalTask();
-            photoRetrievalTask.execute(s);
-        }
-    }
-
-    class PhotoRetrievalTask extends AsyncTask<Establishment, Void, Bitmap> {
-        Establishment passedEstablishment = null;
-
-        @Override
-        protected Bitmap doInBackground(Establishment... params) {
-
-            passedEstablishment = params[0];
-            URL url = null;
-            Bitmap bitmap = null;
-            HttpURLConnection httpURLConnection = null;
-
-
-            final String BASE_URL = "https://maps.googleapis.com/maps/api/place/photo?";
-            final String PARAM_KEY = "key";
-            final String PARAM_PHOTOREFERENCE = "photoreference";
-            final String PARAM_MAXHEIGHT = "maxheight";
-            String key = "AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg";
-            String photoID = passedEstablishment.getPhotoReferenceID();
-            String maxheight = "800";
-
-
-            Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                    .appendQueryParameter(PARAM_KEY, key)
-                    .appendQueryParameter(PARAM_PHOTOREFERENCE, photoID)
-                    .appendQueryParameter(PARAM_MAXHEIGHT, maxheight)
-                    .build();
-
-            try {
-                /*
-                 *   Reference for google place api URL:
-                 *  https://maps.googleapis.com/maps/api/place/photo?maxheight=800&key=AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg&photoreference=[photoID]
-                 */
-                url = new URL(builtUri.toString());
-                httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("GET");
-                httpURLConnection.connect();
-
-                InputStream inputStream = httpURLConnection.getInputStream();
-
-                bitmap = BitmapFactory.decodeStream(inputStream);
-
-            } catch (MalformedURLException e) {
-                Log.e(LOG_TAG, "Malformed URL Exception", e);
-            } catch (IOException e) {
-                Log.e(LOG_TAG, "IO URL Exception", e);
-            } finally {
-                if (httpURLConnection != null) {
-                    httpURLConnection.disconnect();
-                }
-            }
-            return bitmap;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            super.onPostExecute(bitmap);
-
-            if (bitmap != null) {
-                Log.i("BITMAP IN POSTEXEC", "NOT NULL");
-            }
-            setEstBitmap(bitmap, passedEstablishment);
-
-        }
-    }
-
+    @Override
     public void setEstBitmap(Bitmap bitMap, Establishment establishment) {
 
         establishment.setBitmap(bitMap);
