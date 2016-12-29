@@ -1,6 +1,8 @@
 package com.netjob.raleightourguide.fragments_restaurant_categories;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -34,6 +36,7 @@ import java.util.List;
 public class RestaurantArrayAdapter extends ArrayAdapter {
 
     private String mPhotoReferenceID = null;
+    ImageView imageView;
 
     public RestaurantArrayAdapter(Context context, List list) {
         super(context, 0, list);
@@ -53,12 +56,7 @@ public class RestaurantArrayAdapter extends ArrayAdapter {
         View listItemView = convertView;
         Restaurant currentRestaurant = (Restaurant) getItem(position);
         String restaurantName = currentRestaurant.getName();
-
-        PhotoAcquisitionTask photoAcquisition = new PhotoAcquisitionTask();
-        photoAcquisition.execute(restaurantName);
-//        Log.i("PHOTO ID", mPhotoReferenceID.toString());
-
-
+        Bitmap bitmap = currentRestaurant.getBitmap();
 
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
@@ -67,116 +65,24 @@ public class RestaurantArrayAdapter extends ArrayAdapter {
         TextView textView = (TextView) listItemView.findViewById(R.id.textView_restaurant_name);
         TextView textView1 = (TextView) listItemView.findViewById(R.id.textView_restaurant_phone);
         TextView textView2 = (TextView) listItemView.findViewById(R.id.textView_restaurant_description);
-        ImageView imageView = (ImageView) listItemView.findViewById(R.id.imageView_restaurant_preview);
+        imageView = (ImageView) listItemView.findViewById(R.id.imageView_restaurant_preview);
+
+
+
 
         textView.setText(currentRestaurant.getName());
         textView1.setText(currentRestaurant.getPhoneNumber());
         textView2.setText(currentRestaurant.getDescription());
-        imageView.setImageResource(currentRestaurant.getPreviewImageID());
+
+        if (bitmap == null) {
+            imageView.setImageResource(R.drawable.dummyimage_restaurant);
+        } else {
+            imageView.setImageBitmap(bitmap);
+        }
 
         return listItemView;
     }
 
 
-    private class PhotoAcquisitionTask extends AsyncTask<String, Void, String> {
 
-        @Override
-        protected String doInBackground(String... params) {
-            HttpURLConnection httpURLConnection = null;
-            StringBuffer buffer = null;
-            BufferedReader bufferedReader = null;
-            String jsonToParse = null;
-
-            String keyword_place = params[0];
-            final String PARAM_KEY = "key";
-            final String PARAM_LOCATION = "location";
-            final String PARAM_KEYWORD = "keyword";
-            final String BASE_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-            final String KEY = "AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg";
-            final String LOCATION = "35.7754,-78.6382";
-
-            Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                    .appendQueryParameter(PARAM_KEY, KEY)
-                    .appendQueryParameter(PARAM_LOCATION, LOCATION)
-                    .appendQueryParameter(PARAM_KEYWORD, keyword_place)
-                    .build();
-
-            Log.i("URI!!!!", builtUri.toString());
-
-            try {
-                URL url = new URL(builtUri.toString());
-
-                httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("GET");
-                httpURLConnection.connect();
-
-                InputStream inputStream = httpURLConnection.getInputStream();
-                buffer = new StringBuffer();
-
-
-                if (inputStream == null) {
-                    return null;
-                }
-
-                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-                String line;
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    buffer.append(line + "\n");
-                }
-
-                if (buffer.length() == 0) {
-                    return null;
-                }
-
-                jsonToParse = buffer.toString();
-                Log.i("JSONTOPARSE:", jsonToParse);
-
-
-            } catch (MalformedURLException e) {
-                Log.e("RestaurantArrayAdapter", "Malformed URL Exception", e);
-            } catch (IOException e) {
-                Log.e("RestaurantArrayAdapter", "IO URL Exception", e);
-            } finally {
-                if (httpURLConnection != null) {
-                    httpURLConnection.disconnect();
-                }
-                if (bufferedReader != null) {
-                    try {
-                        bufferedReader.close();
-                    } catch (IOException e) {
-
-                    }
-
-                }
-            }
-
-            try {
-                JSONObject jsonObject = new JSONObject(jsonToParse);
-
-                JSONArray results = jsonObject.getJSONArray("results");
-                JSONObject photos = results.getJSONObject(0).getJSONArray("photos").getJSONObject(0);
-                String photoReferenceID = photos.getString("photo_reference");
-
-                if (photoReferenceID != null) {
-                    return photoReferenceID;
-                }
-
-
-            } catch (JSONException e) {
-                Log.e("RestaurantArrayAdapter", "JSON Exception", e);
-            }
-            return null;
-        }//doInBackground()
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-            mPhotoReferenceID = s;
-            if (mPhotoReferenceID != null)
-            Log.i("PHOTO ID", mPhotoReferenceID.toString());
-        }
-    }
 }
