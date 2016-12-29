@@ -1,5 +1,6 @@
 package com.netjob.raleightourguide.fragments_restaurant_categories;
 
+import android.net.Uri;
 import android.widget.ImageView;
 
 /**
@@ -12,14 +13,17 @@ public class Restaurant {
     private String mPhoneNumber;
     private String mDescription;
     private int mPreviewImageID;
+    private Uri mAddressUri;
+//    private ... mGoogleMapsVariable TODO figure out variable needed to find on maps
 
 
 //    TODO learn regular expressions and implement for phone number variable
-    public Restaurant(String name, String phoneNumber, String description, int previewImageID) {
+    public Restaurant(String name, String phoneNumber, String description, int previewImageID, String addressUri) {
         mName = name;
         mPhoneNumber = phoneNumber;
         mDescription = description;
         mPreviewImageID = previewImageID;
+        mAddressUri = Uri.parse("geo:0,0?q="+addressUri);
 
     }
 
@@ -54,6 +58,14 @@ public class Restaurant {
 
     public void setPreviewImageID(int previewImageID) {
         mPreviewImageID = previewImageID;
+    }
+
+    public Uri getAddressUri() {
+        return mAddressUri;
+    }
+
+    public void setAddressUri(String addressUri) {
+        mAddressUri = Uri.parse("geo:0,0?q="+addressUri);
     }
 
 }

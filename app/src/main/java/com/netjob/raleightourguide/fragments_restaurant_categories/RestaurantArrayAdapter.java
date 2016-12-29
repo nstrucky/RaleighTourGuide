@@ -20,21 +20,21 @@ import java.util.List;
 
 public class RestaurantArrayAdapter extends ArrayAdapter {
 
-//    private String mRestaurantName;
-//    private String mRestaurantDescription;
-
 
     public RestaurantArrayAdapter(Context context, List list) {
         super(context, 0, list);
 
-//        mRestaurantName = name;
-//        mRestaurantDescription = description;
     }
 
 
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+
+//        key=AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg
+//        https://maps.googleapis.com/maps/api/place/nearbysearch/xml?key=AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg&location=35.7754,-78.6382&radius=45000&keyword=buku
+//        https://maps.googleapis.com/maps/api/place/photo?maxheight=300&key=AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg&photoreference=CoQBdwAAAIaI6WP-HvIY1CTLbEUCFVFZoWHYwooFXbxriA9KzzDvgU8agvhETHPICBQKi6n0fmixCKcOCvzJetAE86uHo_dZg76zbQMFMfFzU1A3FwZNx2RHSHVkN0tknvuNkMgWBNv_S4Ga9_BHlTEhl0tup9j0FCBjWEgQAJ3daVP0EPolEhAMpA9ZaSWgjGWFanJlaRLPGhS4BfGl1YAbUSNjQE4gVcyZDPkjUg
 
         View listItemView = convertView;
         Restaurant currentRestaurant = (Restaurant) getItem(position);
@@ -43,14 +43,10 @@ public class RestaurantArrayAdapter extends ArrayAdapter {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
-
         TextView textView = (TextView) listItemView.findViewById(R.id.textView_restaurant_name);
         TextView textView1 = (TextView) listItemView.findViewById(R.id.textView_restaurant_phone);
         TextView textView2 = (TextView) listItemView.findViewById(R.id.textView_restaurant_description);
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.imageView_restaurant_preview);
-
-
-//        listItemView.setBackground(getContext().getResources().getDrawable(currentRestaurant.getPreviewImageID()));
 
         textView.setText(currentRestaurant.getName());
         textView1.setText(currentRestaurant.getPhoneNumber());
