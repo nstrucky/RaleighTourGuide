@@ -35,7 +35,6 @@ import java.util.List;
 
 public class RestaurantArrayAdapter extends ArrayAdapter {
 
-    private String mPhotoReferenceID = null;
     ImageView imageView;
 
     public RestaurantArrayAdapter(Context context, List list) {
@@ -43,11 +42,9 @@ public class RestaurantArrayAdapter extends ArrayAdapter {
 
     }
 
-
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
 
 //        key=AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg
 //        https://maps.googleapis.com/maps/api/place/nearbysearch/xml?key=AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg&location=35.7754,-78.6382&radius=45000&keyword=buku
@@ -55,7 +52,6 @@ public class RestaurantArrayAdapter extends ArrayAdapter {
 
         View listItemView = convertView;
         Restaurant currentRestaurant = (Restaurant) getItem(position);
-        String restaurantName = currentRestaurant.getName();
         Bitmap bitmap = currentRestaurant.getBitmap();
 
         if (listItemView == null) {
@@ -66,9 +62,6 @@ public class RestaurantArrayAdapter extends ArrayAdapter {
         TextView textView1 = (TextView) listItemView.findViewById(R.id.textView_restaurant_phone);
         TextView textView2 = (TextView) listItemView.findViewById(R.id.textView_restaurant_description);
         imageView = (ImageView) listItemView.findViewById(R.id.imageView_restaurant_preview);
-
-
-
 
         textView.setText(currentRestaurant.getName());
         textView1.setText(currentRestaurant.getPhoneNumber());

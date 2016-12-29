@@ -40,16 +40,14 @@ import java.util.ListIterator;
 
 public class AsianFragment extends Fragment {
 
+    private final String LOG_TAG = "AsianFragment";
     ArrayList<Restaurant> mRestaurantArrayList;
-    List<Bitmap> mBitmaps = new ArrayList<>();
     ListView listView;
     RestaurantArrayAdapter arrayAdapter;
 
     public AsianFragment() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,9 +81,6 @@ public class AsianFragment extends Fragment {
             photoIDAcquisition.execute(restaurant);
         }
 
-
-
-
         listView = (ListView) fragmentRootView.findViewById(R.id.listview_restaurants);
 
         arrayAdapter = new RestaurantArrayAdapter(getActivity(), mRestaurantArrayList);
@@ -106,10 +101,7 @@ public class AsianFragment extends Fragment {
         });
 
         return fragmentRootView;
-
     }
-
-
 
     class PhotoIDAcquisitionTask extends AsyncTask<Restaurant, Void, Restaurant> {
 
@@ -136,9 +128,6 @@ public class AsianFragment extends Fragment {
                     .appendQueryParameter(PARAM_LOCATION, LOCATION)
                     .appendQueryParameter(PARAM_KEYWORD, keyword_place)
                     .build();
-
-            Log.i("URI!!!!", builtUri.toString());
-
             try {
                 URL url = new URL(builtUri.toString());
 
@@ -167,13 +156,12 @@ public class AsianFragment extends Fragment {
                 }
 
                 jsonToParse = buffer.toString();
-                Log.i("JSONTOPARSE:", jsonToParse);
-
+                Log.i(LOG_TAG, jsonToParse);
 
             } catch (MalformedURLException e) {
-                Log.e("RestaurantArrayAdapter", "Malformed URL Exception", e);
+                Log.e(LOG_TAG, "Malformed URL Exception", e);
             } catch (IOException e) {
-                Log.e("RestaurantArrayAdapter", "IO URL Exception", e);
+                Log.e(LOG_TAG, "IO URL Exception", e);
             } finally {
                 if (httpURLConnection != null) {
                     httpURLConnection.disconnect();
@@ -192,22 +180,19 @@ public class AsianFragment extends Fragment {
 
                 JSONArray results = jsonObject.getJSONArray("results");
                 if (results.length() < 1) {
-                    Log.e("JSON ERROR", "Could not find results for " + keyword_place);
+                    Log.e(LOG_TAG, "Could not find results for " + keyword_place);
                     return null;
                 }
                 JSONObject photos = results.getJSONObject(0).getJSONArray("photos").getJSONObject(0);
                 String photoReferenceID = photos.getString("photo_reference");
-                Log.i("PHOTO ID AFTER PARSE", photoReferenceID);//++++++++++++++++++++++++++++++++++++++++
 
                 if (photoReferenceID != null) {
-                    Log.i("PHOTO ID BEFORE RETURN", photoReferenceID);//++++++++++++++++++++++++++++++++++
-
                     passedRestaurant.setPhotoReferenceID(photoReferenceID);
                     return passedRestaurant;
                 }
 
             } catch (JSONException e) {
-                Log.e("RestaurantArrayAdapter", "JSON Exception", e);
+                Log.e(LOG_TAG, "JSON Exception", e);
             }
             return null;
         }//doInBackground()
@@ -217,10 +202,7 @@ public class AsianFragment extends Fragment {
             super.onPostExecute(s);
 
             PhotoRetrievalTask photoRetrievalTask = new PhotoRetrievalTask();
-
             photoRetrievalTask.execute(s);
-
-            Log.i("PHOTO ID POST EXEC1", s.getPhotoReferenceID());//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         }
     }
 
@@ -233,32 +215,48 @@ public class AsianFragment extends Fragment {
             passedRestaurant = params[0];
             URL url = null;
             Bitmap bitmap = null;
-//            HttpURLConnection httpURLConnection = null;
+            HttpURLConnection httpURLConnection = null;
+
+
+            final String BASE_URL = "https://maps.googleapis.com/maps/api/place/photo?";
+            final String PARAM_KEY = "key";
+            final String PARAM_PHOTOREFERENCE = "photoreference";
+            final String PARAM_MAXHEIGHT = "maxheight";
+            String key = "AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg";
             String photoID = passedRestaurant.getPhotoReferenceID();
-            if (photoID != null)
-            Log.i("PHOTO ID TASK2", photoID);
+            String maxheight = "800";
+
+
+            Uri builtUri = Uri.parse(BASE_URL).buildUpon()
+                    .appendQueryParameter(PARAM_KEY, key)
+                    .appendQueryParameter(PARAM_PHOTOREFERENCE, photoID)
+                    .appendQueryParameter(PARAM_MAXHEIGHT, maxheight)
+                    .build();
 
             try {
-                url = new URL("https://maps.googleapis.com/maps/api/place/photo?maxheight=800&key=AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg&photoreference="+photoID);
-//                httpURLConnection = (HttpURLConnection) url.openConnection();
-//                httpURLConnection.setRequestMethod("GET");
-//                httpURLConnection.connect();
+                /*
+                 *   Reference for google place api URL:
+                 *  https://maps.googleapis.com/maps/api/place/photo?maxheight=800&key=AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg&photoreference=[photoID]
+                 */
+                url = new URL(builtUri.toString());
+                httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("GET");
+                httpURLConnection.connect();
 
-//                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStream inputStream = httpURLConnection.getInputStream();
 
-                bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                bitmap = BitmapFactory.decodeStream(inputStream);
 
             } catch (MalformedURLException e) {
-                Log.e("RestaurantArrayAdapter", "Malformed URL Exception", e);
+                Log.e(LOG_TAG, "Malformed URL Exception", e);
             } catch (IOException e) {
-                Log.e("RestaurantArrayAdapter", "IO URL Exception", e);
+                Log.e(LOG_TAG, "IO URL Exception", e);
             } finally {
-//                if (httpURLConnection != null) {
-//                    httpURLConnection.disconnect();
-//
-//                }
+                if (httpURLConnection != null) {
+                    httpURLConnection.disconnect();
+                }
             }
-                return bitmap;
+            return bitmap;
         }
 
         @Override
