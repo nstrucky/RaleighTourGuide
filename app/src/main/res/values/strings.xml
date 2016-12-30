@@ -24,7 +24,6 @@
     <string name="hotel_marriottcitycenter">Raleigh Marriott City Center</string>
 
 
-
     <!-- Establishment Descriptions -->
 
     <string name="description_rest_buku">
@@ -49,7 +48,6 @@
     </string>
 
 
-
     <!-- Establishment Phone Numbers -->
 
     <string name="phoneNumber_rest_buku">919-834-6963</string>
@@ -58,7 +56,7 @@
     <string name="phoneNumber_hotel_sheraton">919-834-9900</string>
     <string name="phoneNumber_hotel_holidaydowntown">919-832-0501</string>
     <string name="phoneNumber_hotel_marriottcitycenter">919-833-1120</string>
-    
+
 
     <!-- Establishment Addresses -->
     <string name="address_rest_buku">110 E Davie St, Raleigh, NC</string>

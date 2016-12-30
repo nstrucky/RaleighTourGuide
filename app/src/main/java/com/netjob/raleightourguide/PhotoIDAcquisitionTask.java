@@ -29,16 +29,14 @@ public class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsy
 
     private final String LOG_TAG = "PhotoAsyncTasks";
 
-    Establishment passedEstablishment = null;
-    BitmapSetter passedBitmapSetter = null;
-    MyAsyncParams passedMyAsyncParams = null;
+    private Establishment passedEstablishment = null;
+    private MyAsyncParams passedMyAsyncParams = null;
 
     @Override
     protected MyAsyncParams doInBackground(MyAsyncParams... params) {
 
         passedMyAsyncParams = params[0];
         passedEstablishment = passedMyAsyncParams.getEstablishment();
-        passedBitmapSetter = passedMyAsyncParams.getFragment();
 
         HttpURLConnection httpURLConnection = null;
         StringBuffer buffer = null;
