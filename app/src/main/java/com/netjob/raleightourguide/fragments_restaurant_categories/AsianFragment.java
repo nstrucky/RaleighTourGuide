@@ -3,12 +3,9 @@ package com.netjob.raleightourguide.fragments_restaurant_categories;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,21 +14,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.netjob.raleightourguide.BitmapSetter;
+import com.netjob.raleightourguide.Establishment;
+import com.netjob.raleightourguide.EstablishmentArrayAdapter;
 import com.netjob.raleightourguide.MyAsyncParams;
 import com.netjob.raleightourguide.PhotoIDAcquisitionTask;
 import com.netjob.raleightourguide.R;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -60,21 +48,21 @@ public class AsianFragment extends Fragment implements BitmapSetter {
 
         mEstablishmentArrayList.add(new Establishment(
                 getString(R.string.buku),
-                getString(R.string.phoneNumber_buku),
-                getString(R.string.description_buku),
-                getString(R.string.address_buku)));
+                getString(R.string.phoneNumber_rest_buku),
+                getString(R.string.description_rest_buku),
+                getString(R.string.address_rest_buku)));
 
         mEstablishmentArrayList.add(new Establishment(
                 getString(R.string.davidsDumplings),
-                getString(R.string.phoneNumber_davidsDumplings),
-                getString(R.string.description_davidsDumplings),
-                getString(R.string.address_davidsDumplings)));
+                getString(R.string.phoneNumber_rest_davidsDumplings),
+                getString(R.string.description_rest_davidsDumplings),
+                getString(R.string.address_rest_davidsDumplings)));
 
         mEstablishmentArrayList.add(new Establishment(
                 getString(R.string.sushiBlues),
-                getString(R.string.phoneNumber_sushiblues),
-                getString(R.string.description_sushiblues),
-                getString(R.string.address_sushiBlues)));
+                getString(R.string.phoneNumber_rest_sushiblues),
+                getString(R.string.description_rest_sushiblues),
+                getString(R.string.address_rest_sushiBlues)));
 
         for (Establishment establishment : mEstablishmentArrayList) {
 

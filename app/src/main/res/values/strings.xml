@@ -19,30 +19,35 @@
     <string name="buku">Buku Raleigh</string>
     <string name="davidsDumplings">David\'s Dumplings</string>
     <string name="sushiBlues">Sushi Blues</string>
-
+    <string name="hotel_sheraton">Sheraton Raleigh Hotel</string>
 
     <!-- Establishment Descriptions -->
 
-    <string name="description_buku">
+    <string name="description_rest_buku">
         Located at the corner of Wilmington and Davie Street, bu•ku: Global Street Food is a local establishment telling a global story. Inspired by the pushcarts of street vendors in cities across the globe, we harvest an array of unique and distinct flavors and present them authentically in a virtual kaleidoscope of plates. The common link being, these are foods that people love.
     </string>
 
-    <string name="description_davidsDumplings">
+    <string name="description_rest_davidsDumplings">
         This unique eatery is owned and operated by Chef David Mao, a successful establishment owner and culinary innovator in Raleigh since 1976. Over the years, if you have eaten at the Mandarin House, The Abacus, The Great Mall of China, The China Cafe and Grille and most recently, the Duck and Dumpling, then you have enjoyed David\’s inspired menus.
     </string>
 
-    <string name="description_sushiblues">
+    <string name="description_rest_sushiblues">
         One of the triangle\'s coolest night spots, Sushi Blues Cafe offers some of the best Sushi and Japanese food, along a softly lit blues/jazz atmosphere.
     </string>
 
+    <string name="description_hotel_sheraton">
+        Make yourself at home here in Raleigh, in one of our 353 spacious and beautifully appointed guest rooms and suites, each of which features the famous Sheraton Signature Bed. Upgrade to our Club Rooms for exclusive lounge access. Host a successful meeting in our 18,000 square feet of recently updated, contemporary meeting and event space, and make use of our expert planning services.    </string>
     <!-- Establishment Phone Numbers -->
 
-    <string name="phoneNumber_buku">919-834-6963</string>
-    <string name="phoneNumber_sushiblues">919-664-8061</string>
-    <string name="phoneNumber_davidsDumplings">919-239-4536</string>
+    <string name="phoneNumber_rest_buku">919-834-6963</string>
+    <string name="phoneNumber_rest_sushiblues">919-664-8061</string>
+    <string name="phoneNumber_rest_davidsDumplings">919-239-4536</string>
+    <string name="phonNumber_hotel_sheraton">919-834-9900</string>
+    
 
     <!-- Establishment Addresses -->
-    <string name="address_buku">110 E Davie St, Raleigh, NC</string>
-    <string name="address_sushiBlues">301 Glenwood Ave, Raleigh NC</string>
-    <string name="address_davidsDumplings">1900 Hillsborough St, Raleigh, NC</string>
+    <string name="address_rest_buku">110 E Davie St, Raleigh, NC</string>
+    <string name="address_rest_sushiBlues">301 Glenwood Ave, Raleigh NC</string>
+    <string name="address_rest_davidsDumplings">1900 Hillsborough St, Raleigh, NC</string>
+    <string name="address_hotel_sheraton">421 S Salisbury St, Raleigh, NC</string>
 </resources>

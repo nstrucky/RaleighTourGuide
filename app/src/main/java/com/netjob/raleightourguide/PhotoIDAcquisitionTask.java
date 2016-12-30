@@ -6,8 +6,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.netjob.raleightourguide.fragments_restaurant_categories.Establishment;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -182,6 +180,8 @@ class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, Bitmap> {
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.connect();
 
+
+//            TODO handle no internet connection
             InputStream inputStream = httpURLConnection.getInputStream();
 
             bitmap = BitmapFactory.decodeStream(inputStream);

@@ -1,4 +1,4 @@
-package com.netjob.raleightourguide.fragments_restaurant_categories;
+package com.netjob.raleightourguide;
 
 import android.graphics.Bitmap;
 import android.net.Uri;

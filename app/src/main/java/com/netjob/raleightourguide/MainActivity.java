@@ -71,14 +71,17 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent intent;
 
         switch (id) {
 
             case R.id.nav_hotels:
+                intent = new Intent(this, HotelsActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.nav_restaurants:
-                Intent intent = new Intent(this, RestaurantsActivity.class);
+                intent = new Intent(this, RestaurantsActivity.class);
                 startActivity(intent);
                 break;
 

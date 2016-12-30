@@ -1,4 +1,4 @@
-package com.netjob.raleightourguide.fragments_restaurant_categories;
+package com.netjob.raleightourguide;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.netjob.raleightourguide.Establishment;
 import com.netjob.raleightourguide.R;
 
 import java.util.List;
