@@ -78,12 +78,8 @@ public class AsianFragment extends Fragment implements BitmapSetter {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Establishment selectedEstablishment = (Establishment) listView.getItemAtPosition(position);
-                String name = selectedEstablishment.getName();
-
-                Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getActivity(), selectedEstablishment.getName(), Toast.LENGTH_SHORT).show();
                 Uri restaurantAddressUri = selectedEstablishment.getAddressUri();
-
                 Intent addressIntent = new Intent(Intent.ACTION_VIEW, restaurantAddressUri);
                 startActivity(addressIntent);
             }

@@ -22,8 +22,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".HotelsActivity"
+            android:label="@string/hotels"
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".RestaurantsActivity"
+            android:label="@string/restaurants"
             android:parentActivityName=".MainActivity"></activity>
     </application>
 

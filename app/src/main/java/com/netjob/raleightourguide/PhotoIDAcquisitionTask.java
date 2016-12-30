@@ -160,14 +160,17 @@ class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, Bitmap> {
         final String PARAM_KEY = "key";
         final String PARAM_PHOTOREFERENCE = "photoreference";
         final String PARAM_MAXHEIGHT = "maxheight";
+        final String PARAM_MINHEIGHT = "minheight";
         String key = "AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg";
         String photoID = passedEstablishment.getPhotoReferenceID();
         String maxheight = "800";
+        String minheight = "600";
 
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
                 .appendQueryParameter(PARAM_KEY, key)
                 .appendQueryParameter(PARAM_PHOTOREFERENCE, photoID)
                 .appendQueryParameter(PARAM_MAXHEIGHT, maxheight)
+                .appendQueryParameter(PARAM_MINHEIGHT, minheight)
                 .build();
 
         try {
