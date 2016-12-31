@@ -2,7 +2,6 @@ package com.netjob.raleightourguide;
 
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,15 +13,16 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HotelsFragment extends Fragment implements BitmapSetter {
 
-    ArrayList<Establishment> establishmentsArray;
+    ArrayList<Establishment> mEstablishmentArrayList;
     ListView listView;
-    EstablishmentArrayAdapter establishmentArrayAdapter;
+    EstablishmentArrayAdapter mEstablishmentArrayAdapter;
 
     public HotelsFragment() {
         // Required empty public constructor
@@ -35,35 +35,34 @@ public class HotelsFragment extends Fragment implements BitmapSetter {
         View fragmentRootView = inflater.inflate(R.layout.fragment_establishment_list, container, false);
         listView = (ListView) fragmentRootView.findViewById(R.id.listview_establishments);
 
-        establishmentsArray = new ArrayList<>();
+        mEstablishmentArrayList = new ArrayList<>();
 
-        establishmentsArray.add(new Establishment(
+        mEstablishmentArrayList.add(new Establishment(
                 getString(R.string.hotel_sheraton),
                 getString(R.string.phoneNumber_hotel_sheraton),
                 getString(R.string.description_hotel_sheraton),
                 getString(R.string.address_hotel_sheraton)
         ));
 
-        establishmentsArray.add(new Establishment(
+        mEstablishmentArrayList.add(new Establishment(
                 getString(R.string.hotel_holidaydowntown),
                 getString(R.string.phoneNumber_hotel_holidaydowntown),
                 getString(R.string.description_hotel_holidaydowntown),
                 getString(R.string.address_hotel_holidadowntown)
         ));
 
-        establishmentsArray.add(new Establishment(
+        mEstablishmentArrayList.add(new Establishment(
                 getString(R.string.hotel_marriottcitycenter),
                 getString(R.string.phoneNumber_hotel_marriottcitycenter),
                 getString(R.string.description_hotel_marriottcitycenter),
                 getString(R.string.address_hotel_marriottcitycenter)
         ));
 
-        establishmentArrayAdapter = new EstablishmentArrayAdapter(getContext(), establishmentsArray);
+        mEstablishmentArrayAdapter = new EstablishmentArrayAdapter(getContext(), mEstablishmentArrayList);
 
-        for (Establishment establishment : establishmentsArray) {
             PhotoIDAcquisitionTask photoIDAcquisitionTask = new PhotoIDAcquisitionTask();
-            photoIDAcquisitionTask.execute(new MyAsyncParams(this, establishment));
-        }
+            photoIDAcquisitionTask.execute(new MyAsyncParams(this, mEstablishmentArrayList));
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -81,9 +80,15 @@ public class HotelsFragment extends Fragment implements BitmapSetter {
     }
 
     @Override
-    public void setEstBitmap(Bitmap bitmap, Establishment establishment) {
-        establishment.setBitmap(bitmap);
-        listView.setAdapter(establishmentArrayAdapter);
+    public void setEstBitmap(Establishment[] establishments) {
 
+        mEstablishmentArrayList.clear();
+
+        mEstablishmentArrayList.addAll(Arrays.asList(establishments));
+
+        listView.setAdapter(mEstablishmentArrayAdapter);
+
+//        establishment.setBitmap(bitMap);
+//        listView.setAdapter(arrayAdapter);
     }
 }

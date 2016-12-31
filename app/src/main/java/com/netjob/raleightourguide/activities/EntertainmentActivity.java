@@ -27,6 +27,7 @@ public class EntertainmentActivity extends AppCompatActivity {
         viewPager.setAdapter(epa);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
     }
 }

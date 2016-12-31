@@ -7,6 +7,6 @@ import android.graphics.Bitmap;
  */
 
 public interface BitmapSetter {
-    public void setEstBitmap(Bitmap bitmap, Establishment establishment);
+    public void setEstBitmap(Establishment[] establishments);
 
 }

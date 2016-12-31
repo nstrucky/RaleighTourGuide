@@ -21,6 +21,8 @@ import com.netjob.raleightourguide.PhotoIDAcquisitionTask;
 import com.netjob.raleightourguide.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,11 +66,9 @@ public class AsianFragment extends Fragment implements BitmapSetter {
                 getString(R.string.description_rest_sushiblues),
                 getString(R.string.address_rest_sushiBlues)));
 
-        for (Establishment establishment : mEstablishmentArrayList) {
 
             PhotoIDAcquisitionTask photoIDAcquisition = new PhotoIDAcquisitionTask();
-            photoIDAcquisition.execute(new MyAsyncParams(this, establishment));
-        }
+            photoIDAcquisition.execute(new MyAsyncParams(this, mEstablishmentArrayList));
 
         listView = (ListView) fragmentRootView.findViewById(R.id.listview_establishments);
 
@@ -89,10 +89,15 @@ public class AsianFragment extends Fragment implements BitmapSetter {
     }
 
     @Override
-    public void setEstBitmap(Bitmap bitMap, Establishment establishment) {
+    public void setEstBitmap(Establishment[] establishments) {
 
-        establishment.setBitmap(bitMap);
+        mEstablishmentArrayList.clear();
+
+        mEstablishmentArrayList.addAll(Arrays.asList(establishments));
         listView.setAdapter(arrayAdapter);
+
+//        establishment.setBitmap(bitMap);
+//        listView.setAdapter(arrayAdapter);
     }
 
 }

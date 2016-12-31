@@ -1,5 +1,10 @@
 package com.netjob.raleightourguide;
 
+import android.widget.ArrayAdapter;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by root on 12/29/16.
  */
@@ -7,16 +12,24 @@ package com.netjob.raleightourguide;
 public class MyAsyncParams {
 
         BitmapSetter mBitmapSetter;
-        Establishment mEstablishment;
+        Establishment[] mEstablishmentArray;
 
-        public MyAsyncParams(BitmapSetter bitmapSetter, Establishment establishment) {
+        public MyAsyncParams(BitmapSetter bitmapSetter, ArrayList<Establishment> establishment) {
+
             mBitmapSetter = bitmapSetter;
-            mEstablishment = establishment;
+
+            Object[] objects = establishment.toArray();
+            mEstablishmentArray = new Establishment[objects.length];
+
+            for (int i = 0; i < objects.length; i++) {
+                mEstablishmentArray[i] = (Establishment) objects[i];
+
+            }
 
         }
 
-        public Establishment getEstablishment() {
-            return mEstablishment;
+        public Establishment[] getEstablishmentArray() {
+            return mEstablishmentArray;
         }
 
         public BitmapSetter getFragment() {
