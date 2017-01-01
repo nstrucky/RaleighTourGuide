@@ -18,7 +18,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by root on 12/29/16.
@@ -35,7 +34,7 @@ public class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsy
     private MyAsyncParams passedMyAsyncParams = null;
 
 
-    private MyAsyncParams setPhotoIDs(MyAsyncParams passedMyAsyncParams, int index) {
+    private MyAsyncParams setPhotoIDs(MyAsyncParams passedMypassedBitmapSetterAsyncParams, int index) {
 
         Establishment currentEstablishment = passedMyAsyncParams.getEstablishmentArray()[index];
 
@@ -91,6 +90,7 @@ public class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsy
             Log.e(LOG_TAG, "Malformed URL Exception", e);
         } catch (IOException e) {
             Log.e(LOG_TAG, "IO URL Exception", e);
+            return null;
         } finally {
             if (httpURLConnection != null) {
                 httpURLConnection.disconnect();
@@ -138,8 +138,6 @@ public class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsy
             setPhotoIDs(passedMyAsyncParams, i);
         }
 
-
-
         return passedMyAsyncParams;
     }//doInBackground()
 
@@ -152,23 +150,21 @@ public class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsy
     }
 }
 
-
-
-class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, Bitmap[]> {
+class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, String> {
 
     MyAsyncParams passedMyAsyncParams = null;
     Establishment[] passedEstablishments = null;
-    BitmapSetter passedBitmapSetter = null;
+    CategoriesParentFragment passedFragment = null;
 
     private final String LOG_TAG = "PhotoRetrievalTask";
 
 
 
     @Override
-    protected Bitmap[] doInBackground(MyAsyncParams... params) {
+    protected String doInBackground(MyAsyncParams... params) {
 
         passedMyAsyncParams = params[0];
-        passedBitmapSetter = passedMyAsyncParams.getFragment();
+        passedFragment = passedMyAsyncParams.getFragment();
         passedEstablishments = passedMyAsyncParams.getEstablishmentArray();
         ArrayList<Bitmap> bitmaps = new ArrayList<>();
 
@@ -176,8 +172,7 @@ class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, Bitmap[]> {
             setBitMap(passedEstablishments, i);
         }
 
-        return new Bitmap[4];
-
+        return null;
     }
 
     private Bitmap setBitMap(Establishment[] passedEstablishments, int index) {
@@ -235,16 +230,10 @@ class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, Bitmap[]> {
         return bitmap;
     }
 
-
     @Override
-    protected void onPostExecute(Bitmap[] bitmap) {
-        super.onPostExecute(bitmap);
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
 
-        if (bitmap != null) {
-            Log.i("BITMAP IN POSTEXEC", "NOT NULL");
-        }
-//        passedBitmapSetter.setEstBitmap(bitmap, passedEstablishments);
-
-        passedBitmapSetter.setEstBitmap(passedEstablishments);
+        passedFragment.setEstBitmap(passedEstablishments);
     }
 }

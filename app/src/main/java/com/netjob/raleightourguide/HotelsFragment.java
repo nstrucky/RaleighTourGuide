@@ -18,25 +18,15 @@ import java.util.Arrays;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HotelsFragment extends Fragment implements BitmapSetter {
+public class HotelsFragment extends CategoriesParentFragment {
 
-    ArrayList<Establishment> mEstablishmentArrayList;
-    ListView listView;
-    EstablishmentArrayAdapter mEstablishmentArrayAdapter;
 
     public HotelsFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View fragmentRootView = inflater.inflate(R.layout.fragment_establishment_list, container, false);
-        listView = (ListView) fragmentRootView.findViewById(R.id.listview_establishments);
-
-        mEstablishmentArrayList = new ArrayList<>();
-
+    protected void initializeEstablishmentArrayList() {
         mEstablishmentArrayList.add(new Establishment(
                 getString(R.string.hotel_sheraton),
                 getString(R.string.phoneNumber_hotel_sheraton),
@@ -57,38 +47,6 @@ public class HotelsFragment extends Fragment implements BitmapSetter {
                 getString(R.string.description_hotel_marriottcitycenter),
                 getString(R.string.address_hotel_marriottcitycenter)
         ));
-
-        mEstablishmentArrayAdapter = new EstablishmentArrayAdapter(getContext(), mEstablishmentArrayList);
-
-            PhotoIDAcquisitionTask photoIDAcquisitionTask = new PhotoIDAcquisitionTask();
-            photoIDAcquisitionTask.execute(new MyAsyncParams(this, mEstablishmentArrayList));
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Establishment establishment = (Establishment) listView.getItemAtPosition(position);
-                Uri establishmentUri = establishment.getAddressUri();
-                Toast.makeText(getContext(), establishment.getName(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Intent.ACTION_VIEW, establishmentUri);
-                startActivity(intent);
-            }
-        });
-
-        return fragmentRootView;
     }
 
-    @Override
-    public void setEstBitmap(Establishment[] establishments) {
-
-        mEstablishmentArrayList.clear();
-
-        mEstablishmentArrayList.addAll(Arrays.asList(establishments));
-
-        listView.setAdapter(mEstablishmentArrayAdapter);
-
-//        establishment.setBitmap(bitMap);
-//        listView.setAdapter(arrayAdapter);
-    }
 }
