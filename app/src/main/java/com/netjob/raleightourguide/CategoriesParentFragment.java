@@ -28,7 +28,6 @@ public class CategoriesParentFragment extends Fragment {
     protected ArrayList<Establishment> mEstablishmentArrayList;
     protected ListView listView;
     protected EstablishmentArrayAdapter arrayAdapter;
-    protected ProgressDialog mProgressDialog;
 
     public CategoriesParentFragment() {
         // Required empty public constructor
@@ -39,12 +38,6 @@ public class CategoriesParentFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View fragmentRootView = inflater.inflate(R.layout.fragment_establishment_list, container, false);
-
-
-            mProgressDialog = new ProgressDialog(getContext());
-            mProgressDialog.setMessage("Loading...");
-            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            mProgressDialog.show();
 
         listView = (ListView) fragmentRootView.findViewById(R.id.listview_establishments);
 
@@ -82,9 +75,12 @@ public class CategoriesParentFragment extends Fragment {
 
     }
 
-    public void closeLoadingDialog() {
-        if (mProgressDialog != null)
-        mProgressDialog.dismiss();
+    public void closeActivityLoadingDialog() {
+        CategoryActivityMethods categoryActivity =
+                (CategoryActivityMethods) getActivity();
+
+        categoryActivity.closeProgressDialog();
+
     }
 
 }

@@ -1,8 +1,11 @@
 package com.netjob.raleightourguide.fragments_restaurant_categories;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.netjob.raleightourguide.R;
 
 /**
  * Created by root on 12/27/16.
@@ -11,10 +14,19 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class RestaurantPagerAdapter extends FragmentPagerAdapter {
 
     private final int RESTAURANT_COUNT = 5;
-    private final String[] categoryNames = {"Asian", "Italian", "Mexican", "Southern", "Other"};
 
-    public RestaurantPagerAdapter(FragmentManager fm) {
+    private String[] categoryNames;
+
+    public RestaurantPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
+
+        categoryNames = new String[] {
+                context.getString(R.string.rest_cat_asian),
+                context.getString(R.string.rest_cat_italian),
+                context.getString(R.string.rest_cat_mexican),
+                context.getString(R.string.rest_cat_southern),
+                context.getString(R.string.rest_cat_other)
+        };
     }
 
     @Override

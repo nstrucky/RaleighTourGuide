@@ -28,7 +28,7 @@ public class EntertainmentActivity extends AppCompatActivity {
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        EntertainmentPagerAdapter epa = new EntertainmentPagerAdapter(getSupportFragmentManager());
+        EntertainmentPagerAdapter epa = new EntertainmentPagerAdapter(getSupportFragmentManager(), this);
 
         viewPager.setAdapter(epa);
 

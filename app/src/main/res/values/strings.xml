@@ -6,6 +6,17 @@
     <string name="landmarks">Landmarks</string>
     <string name="emergency">Emergency</string>
 
+    <string name="rest_cat_asian">Asian</string>
+    <string name="rest_cat_mexican">Mexican</string>
+    <string name="rest_cat_italian">Italian</string>
+    <string name="rest_cat_southern">Southern</string>
+    <string name="rest_cat_other">Other</string>
+
+    <string name="ent_cat_movietheatres">Movie Theaters</string>
+    <string name="ent_cat_activities">Activities</string>
+    <string name="ent_cat_museums">Museums</string>
+
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

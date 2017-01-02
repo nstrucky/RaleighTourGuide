@@ -1,12 +1,10 @@
 package com.netjob.raleightourguide;
 
-import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,11 +28,31 @@ import java.util.ArrayList;
 
 public class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsyncParams> {
 
-    private final String LOG_TAG = "PhotoAsyncTasks";
+    private final String LOG_TAG = "PhotoIDAcquisition Task";
 
     private Establishment[] passedEstablishments = null;
     private MyAsyncParams passedMyAsyncParams = null;
 
+    @Override
+    protected MyAsyncParams doInBackground(MyAsyncParams... params) {
+
+        passedMyAsyncParams = params[0];
+        passedEstablishments = passedMyAsyncParams.getEstablishmentArray();
+
+        for (int i = 0; i < passedEstablishments.length; i++) {
+            setPhotoIDs(i);
+        }
+
+        return passedMyAsyncParams;
+    }//doInBackground()
+
+    @Override
+    protected void onPostExecute(MyAsyncParams myAsyncParams) {
+        super.onPostExecute(myAsyncParams);
+
+        PhotoRetrievalTask photoRetrievalTask = new PhotoRetrievalTask();
+        photoRetrievalTask.execute(myAsyncParams);
+    }
 
     private MyAsyncParams setPhotoIDs(int index) {
 
@@ -59,15 +77,15 @@ public class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsy
                 .appendQueryParameter(PARAM_KEYWORD, keyword_place)
                 .build();
         try {
-            URL url = new URL(builtUri.toString());
 
-            httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.connect();
+                URL url = new URL(builtUri.toString());
 
-            InputStream inputStream = httpURLConnection.getInputStream();
-            buffer = new StringBuffer();
+                httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("GET");
+                httpURLConnection.connect();
 
+                InputStream inputStream = httpURLConnection.getInputStream();
+                buffer = new StringBuffer();
 
             if (inputStream == null) {
                 return null;
@@ -129,39 +147,15 @@ public class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsy
         return null;
     }
 
-    @Override
-    protected MyAsyncParams doInBackground(MyAsyncParams... params) {
-
-        passedMyAsyncParams = params[0];
-        passedEstablishments = passedMyAsyncParams.getEstablishmentArray();
-
-
-
-        for (int i = 0; i < passedEstablishments.length; i++) {
-            setPhotoIDs(i);
-        }
-
-        return passedMyAsyncParams;
-    }//doInBackground()
-
-    @Override
-    protected void onPostExecute(MyAsyncParams myAsyncParams) {
-        super.onPostExecute(myAsyncParams);
-
-        PhotoRetrievalTask photoRetrievalTask = new PhotoRetrievalTask();
-        photoRetrievalTask.execute(myAsyncParams);
-    }
 }
 
 class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, String> {
 
+    private final String LOG_TAG = "PhotoRetrieval Task";
+
     MyAsyncParams passedMyAsyncParams = null;
     Establishment[] passedEstablishments = null;
     CategoriesParentFragment passedFragment = null;
-
-    private final String LOG_TAG = "PhotoRetrievalTask";
-
-
 
     @Override
     protected String doInBackground(MyAsyncParams... params) {
@@ -169,7 +163,6 @@ class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, String> {
         passedMyAsyncParams = params[0];
         passedFragment = passedMyAsyncParams.getFragment();
         passedEstablishments = passedMyAsyncParams.getEstablishmentArray();
-        ArrayList<Bitmap> bitmaps = new ArrayList<>();
 
         for (int i = 0; i < passedEstablishments.length; i++) {
             setBitMap(passedEstablishments, i);
@@ -182,10 +175,8 @@ class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, String> {
 
         Establishment currentEstablishment = passedEstablishments[index];//get establishment array instead?
 
-        URL url = null;
         Bitmap bitmap = null;
         HttpURLConnection httpURLConnection = null;
-
 
         final String BASE_URL = "https://maps.googleapis.com/maps/api/place/photo?";
         final String PARAM_KEY = "key";
@@ -209,13 +200,11 @@ class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, String> {
                  *   Reference for google place api URL:
                  *  https://maps.googleapis.com/maps/api/place/photo?maxheight=800&key=AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg&photoreference=[photoID]
                  */
-            url = new URL(builtUri.toString());
+            URL url = new URL(builtUri.toString());
             httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.connect();
 
-
-//            TODO handle no internet connection
             InputStream inputStream = httpURLConnection.getInputStream();
 
             bitmap = BitmapFactory.decodeStream(inputStream);
@@ -238,6 +227,6 @@ class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, String> {
         super.onPostExecute(s);
 
         passedFragment.setEstBitmap(passedEstablishments);
-        passedFragment.closeLoadingDialog();
+        passedFragment.closeActivityLoadingDialog();
     }
 }
