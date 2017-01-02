@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.CacheResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -39,10 +40,11 @@ public class CategoriesParentFragment extends Fragment {
 
         View fragmentRootView = inflater.inflate(R.layout.fragment_establishment_list, container, false);
 
-        mProgressDialog = new ProgressDialog(getContext());
-        mProgressDialog.setMessage("Loading...");
-        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        mProgressDialog.show();
+
+            mProgressDialog = new ProgressDialog(getContext());
+            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            mProgressDialog.show();
 
         listView = (ListView) fragmentRootView.findViewById(R.id.listview_establishments);
 
@@ -81,6 +83,7 @@ public class CategoriesParentFragment extends Fragment {
     }
 
     public void closeLoadingDialog() {
+        if (mProgressDialog != null)
         mProgressDialog.dismiss();
     }
 

@@ -1,14 +1,8 @@
-package com.netjob.raleightourguide;
+package com.netjob.raleightourguide.fragments_restaurant_categories;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
-import com.netjob.raleightourguide.fragments_restaurant_categories.AsianFragment;
-import com.netjob.raleightourguide.fragments_restaurant_categories.ItalianFragment;
-import com.netjob.raleightourguide.fragments_restaurant_categories.MexicanFragment;
-import com.netjob.raleightourguide.fragments_restaurant_categories.OtherFragment;
-import com.netjob.raleightourguide.fragments_restaurant_categories.SouthernFragment;
 
 /**
  * Created by root on 12/27/16.

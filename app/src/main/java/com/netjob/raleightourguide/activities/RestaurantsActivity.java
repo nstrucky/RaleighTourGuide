@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.design.widget.TabLayout;
-import android.support.v4.net.ConnectivityManagerCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.netjob.raleightourguide.R;
-import com.netjob.raleightourguide.RestaurantPagerAdapter;
+import com.netjob.raleightourguide.fragments_restaurant_categories.RestaurantPagerAdapter;
 
 public class RestaurantsActivity extends AppCompatActivity {
 

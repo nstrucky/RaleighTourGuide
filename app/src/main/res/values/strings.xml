@@ -19,10 +19,15 @@
     <string name="buku">Buku Raleigh</string>
     <string name="davidsDumplings">David\'s Dumplings</string>
     <string name="sushiBlues">Sushi Blues</string>
+    <string name="rest_amedeos">Amedeos Italian Restaurant</string>
+    <string name="rest_brioTuscan">BRIO Tuscan Grille</string>
     <string name="hotel_sheraton">Sheraton Raleigh Hotel</string>
     <string name="hotel_holidaydowntown">Holiday Inn Raleigh Downtown</string>
     <string name="hotel_marriottcitycenter">Raleigh Marriott City Center</string>
-
+    <string name="rest_casaCarbone">Casa Carbone Ristorante Italiano</string>
+    <string name="rest_chubbytacos">Chubby\'s Tacos</string>
+    <string name="rest_elrodeo">El Rodeo Mexican Restaurant</string>
+    <string name="rest_driftwood">Driftwood Southern Kitchen</string>
 
     <!-- Establishment Descriptions -->
 
@@ -39,12 +44,36 @@
         Make yourself at home here in Raleigh, in one of our 353 spacious and beautifully appointed guest rooms and suites, each of which features the famous Sheraton Signature Bed. Upgrade to our Club Rooms for exclusive lounge access. Host a successful meeting in our 18,000 square feet of recently updated, contemporary meeting and event space, and make use of our expert planning services.
     </string>
 
+    <string name="description_rest_amedeos">
+        In 1963, \“Amedeo\” Richard DeAngelis opened a small Italian restaurant to serve his family\’s recipes. The company grew in size and popularity and became an NC State and Raleigh favorite. In February of 2010, a company named Wolfgang, Inc, consisting of David Harris and Rodney Byrd, purchased Amedeo\’s.
+    </string>
+
+    <string name="description_rest_brioTuscan">
+        At BRIO, we celebrate life, love and all things Italian!  In our restaurants, the chef-inspired cuisine at BRIO is simply prepared using the finest and freshest ingredients, with an emphasis on high-quality steaks, housemade pasta specialties and flatbreads prepared in an authentic Italian oven.
+    </string>
+
     <string name="description_hotel_holidaydowntown">
         Holiday Inn Raleigh Downtown, located in the heart of the city, where you will find everything. Shopping, dining, entertainment and the arts. You are within easy walking distance to the Raleigh Convention Center, Duke Energy Center for the Performing Arts and five free museums.Located just 13 miles from the Raleigh-Durham International Airport, you\’ll spend less time in traffic and more time doing what you came to Raleigh to do.
     </string>
 
     <string name="description_hotel_marriottcitycenter">
         The Raleigh Marriott City Center offers an elevated experience for business and leisure travelers alike. Our hotel guests can enjoy spacious, well-designed hotel rooms and suites, a vast array of luxury amenities, and intuitive service. The comforts of home await you here in Raleigh in our thoughtfully appointed hotel rooms; each one features a flat-screen TV, marble bathrooms, an ergonomic work area, and luxury bedding.
+    </string>
+
+    <string name="description_rest_casaCarbone">
+        Located right off Glenwood Avenue, Casa Carbone is a timeless local favorite. Delicious Italian cuisine and a warm family atmosphere, keep Raleigh coming back time and again.
+    </string>
+
+    <string name="description_rest_chubbytacos">
+        See reviews on Facebook
+    </string>
+
+    <string name="description_rest_elrodeo">
+        See reviews on Facebook
+    </string>
+
+    <string name="description_rest_driftwood">
+        We feature a unique Chef\'s table featuring an open kitchen, a communal style semi-private room, and a large open dining room. Our ever-changing menu showcases the finest of ingredients from supporting local farms and purveyors, allowing us to make as much as possible in house.
     </string>
 
 
@@ -56,6 +85,12 @@
     <string name="phoneNumber_hotel_sheraton">919-834-9900</string>
     <string name="phoneNumber_hotel_holidaydowntown">919-832-0501</string>
     <string name="phoneNumber_hotel_marriottcitycenter">919-833-1120</string>
+    <string name="phoneNumber_rest_amedeos">919-851-0473</string>
+    <string name="phoneNumber_rest_brioTuscan">919-881-2048</string>
+    <string name="phoneNumber_rest_casaCarbone">919-781-8750</string>
+    <string name="phoneNumber_rest_chubbytacos">919-781-4480</string>
+    <string name="phoneNumber_rest_elrodeo">919-571-1188</string>
+    <string name="phoneNumber_rest_drifwood">919-977-8360</string>
 
 
     <!-- Establishment Addresses -->
@@ -65,4 +100,11 @@
     <string name="address_hotel_sheraton">421 S Salisbury St, Raleigh, NC</string>
     <string name="address_hotel_holidadowntown">320 Hillsborough St, Raleigh, NC</string>
     <string name="address_hotel_marriottcitycenter">500 Fayetteville St, Raleigh, NC</string>
+    <string name="address_rest_amedeos">3905 Western Blvd, Raleigh, NC</string>
+    <string name="address_rest_brioTuscan">4325 Glenwood Ave, Raleigh, NC</string>
+    <string name="address_rest_casaCarbone">Oak Park Shopping Center, 6019 Glenwood Ave A, Raleigh, NC</string>
+    <string name="address_rest_chubbytacos">2444 Wycliff Rd, Raleigh, NC</string>
+    <string name="address_rest_elrodeo">Great Clips Village at Townridge, 4112 Pleasant Valley Rd, Raleigh, NC</string>
+    <string name="address_rest_driftwood">8460 Honeycutt Rd #112, Raleigh, NC</string>
+
 </resources>

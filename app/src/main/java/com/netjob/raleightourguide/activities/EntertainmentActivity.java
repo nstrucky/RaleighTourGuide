@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.netjob.raleightourguide.EntertainmentPagerAdapter;
+import com.netjob.raleightourguide.fragments_entertainment_categories.EntertainmentPagerAdapter;
 import com.netjob.raleightourguide.R;
 
 public class EntertainmentActivity extends AppCompatActivity {

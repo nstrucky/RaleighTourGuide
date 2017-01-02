@@ -8,25 +8,42 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.netjob.raleightourguide.CategoriesParentFragment;
+import com.netjob.raleightourguide.Establishment;
 import com.netjob.raleightourguide.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ItalianFragment extends Fragment {
+public class ItalianFragment extends CategoriesParentFragment {
 
 
     public ItalianFragment() {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText("Italian Restaurants");
-        return textView;
-    }
+    protected void initializeEstablishmentArrayList() {
 
+        mEstablishmentArrayList.add(new Establishment(
+                getString(R.string.rest_amedeos),
+                getString(R.string.phoneNumber_rest_amedeos),
+                getString(R.string.description_rest_amedeos),
+                getString(R.string.address_rest_amedeos)
+        ));
+
+        mEstablishmentArrayList.add(new Establishment(
+                getString(R.string.rest_brioTuscan),
+                getString(R.string.phoneNumber_rest_brioTuscan),
+                getString(R.string.description_rest_brioTuscan),
+                getString(R.string.address_rest_brioTuscan)
+        ));
+
+        mEstablishmentArrayList.add(new Establishment(
+                getString(R.string.rest_casaCarbone),
+                getString(R.string.phoneNumber_rest_casaCarbone),
+                getString(R.string.description_rest_casaCarbone),
+                getString(R.string.address_rest_casaCarbone)
+        ));
+    }
 }

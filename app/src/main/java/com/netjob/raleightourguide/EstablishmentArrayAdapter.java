@@ -9,10 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.netjob.raleightourguide.Establishment;
-import com.netjob.raleightourguide.R;
-
 import java.util.List;
 
 /**
@@ -31,10 +27,6 @@ public class EstablishmentArrayAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-//        key=AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg
-//        https://maps.googleapis.com/maps/api/place/nearbysearch/xml?key=AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg&location=35.7754,-78.6382&radius=45000&keyword=buku
-//        https://maps.googleapis.com/maps/api/place/photo?maxheight=300&key=AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg&photoreference=CoQBdwAAAIaI6WP-HvIY1CTLbEUCFVFZoWHYwooFXbxriA9KzzDvgU8agvhETHPICBQKi6n0fmixCKcOCvzJetAE86uHo_dZg76zbQMFMfFzU1A3FwZNx2RHSHVkN0tknvuNkMgWBNv_S4Ga9_BHlTEhl0tup9j0FCBjWEgQAJ3daVP0EPolEhAMpA9ZaSWgjGWFanJlaRLPGhS4BfGl1YAbUSNjQE4gVcyZDPkjUg
 
         View listItemView = convertView;
         Establishment currentEstablishment = (Establishment) getItem(position);

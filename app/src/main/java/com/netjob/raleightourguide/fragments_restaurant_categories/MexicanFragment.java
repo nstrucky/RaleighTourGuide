@@ -8,25 +8,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.netjob.raleightourguide.CategoriesParentFragment;
+import com.netjob.raleightourguide.Establishment;
 import com.netjob.raleightourguide.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MexicanFragment extends Fragment {
+public class MexicanFragment extends CategoriesParentFragment {
 
 
     public MexicanFragment() {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText("Mexican Restaurants");
-        return textView;
-    }
+    protected void initializeEstablishmentArrayList() {
+        mEstablishmentArrayList.add(new Establishment(
+                getString(R.string.rest_chubbytacos),
+                getString(R.string.phoneNumber_rest_chubbytacos),
+                getString(R.string.description_rest_chubbytacos),
+                getString(R.string.address_rest_chubbytacos)
+        ));
 
+        mEstablishmentArrayList.add(new Establishment(
+                getString(R.string.rest_elrodeo),
+                getString(R.string.phoneNumber_rest_elrodeo),
+                getString(R.string.description_rest_elrodeo),
+                getString(R.string.address_rest_elrodeo)
+        ));
+    }
 }

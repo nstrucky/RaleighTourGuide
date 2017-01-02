@@ -1,12 +1,8 @@
-package com.netjob.raleightourguide;
+package com.netjob.raleightourguide.fragments_entertainment_categories;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
-import com.netjob.raleightourguide.fragments_entertainment_categories.ActivitiesFragment;
-import com.netjob.raleightourguide.fragments_entertainment_categories.MovieTheaterFragment;
-import com.netjob.raleightourguide.fragments_entertainment_categories.MuseumsFragment;
 
 /**
  * Created by root on 12/30/16.
