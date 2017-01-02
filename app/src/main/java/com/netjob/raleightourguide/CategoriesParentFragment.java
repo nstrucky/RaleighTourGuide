@@ -1,10 +1,13 @@
 package com.netjob.raleightourguide;
 
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.net.ConnectivityManagerCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +27,7 @@ public class CategoriesParentFragment extends Fragment {
     protected ArrayList<Establishment> mEstablishmentArrayList;
     protected ListView listView;
     protected EstablishmentArrayAdapter arrayAdapter;
+    protected ProgressDialog mProgressDialog;
 
     public CategoriesParentFragment() {
         // Required empty public constructor
@@ -34,6 +38,12 @@ public class CategoriesParentFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View fragmentRootView = inflater.inflate(R.layout.fragment_establishment_list, container, false);
+
+        mProgressDialog = new ProgressDialog(getContext());
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.show();
+
         listView = (ListView) fragmentRootView.findViewById(R.id.listview_establishments);
 
         mEstablishmentArrayList = new ArrayList<>();
@@ -64,10 +74,14 @@ public class CategoriesParentFragment extends Fragment {
     }
 
     public void setEstBitmap(Establishment[] establishments) {
-
         mEstablishmentArrayList.clear();
         mEstablishmentArrayList.addAll(Arrays.asList(establishments));
         listView.setAdapter(arrayAdapter);
 
     }
+
+    public void closeLoadingDialog() {
+        mProgressDialog.dismiss();
+    }
+
 }

@@ -1,10 +1,12 @@
 package com.netjob.raleightourguide;
 
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +36,7 @@ public class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsy
     private MyAsyncParams passedMyAsyncParams = null;
 
 
-    private MyAsyncParams setPhotoIDs(MyAsyncParams passedMypassedBitmapSetterAsyncParams, int index) {
+    private MyAsyncParams setPhotoIDs(int index) {
 
         Establishment currentEstablishment = passedMyAsyncParams.getEstablishmentArray()[index];
 
@@ -132,10 +134,11 @@ public class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsy
 
         passedMyAsyncParams = params[0];
         passedEstablishments = passedMyAsyncParams.getEstablishmentArray();
-        ArrayList<String> photoIDArrayList = new ArrayList<>();
+
+
 
         for (int i = 0; i < passedEstablishments.length; i++) {
-            setPhotoIDs(passedMyAsyncParams, i);
+            setPhotoIDs(i);
         }
 
         return passedMyAsyncParams;
@@ -235,5 +238,6 @@ class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, String> {
         super.onPostExecute(s);
 
         passedFragment.setEstBitmap(passedEstablishments);
+        passedFragment.closeLoadingDialog();
     }
 }
