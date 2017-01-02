@@ -25,7 +25,7 @@ public class RestaurantPagerAdapter extends FragmentPagerAdapter {
                 context.getString(R.string.rest_cat_italian),
                 context.getString(R.string.rest_cat_mexican),
                 context.getString(R.string.rest_cat_southern),
-                context.getString(R.string.rest_cat_other)
+                context.getString(R.string.cat_all)
         };
     }
 
@@ -52,7 +52,7 @@ public class RestaurantPagerAdapter extends FragmentPagerAdapter {
                 return new SouthernFragment();
 
             case 4:
-                return new OtherFragment();
+                return new RestAllFragment();
 
         }
 

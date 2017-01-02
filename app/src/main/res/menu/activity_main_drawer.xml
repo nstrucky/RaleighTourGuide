@@ -4,19 +4,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_hotels"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_hotel_white_24dp"
             android:title="@string/hotels" />
         <item
             android:id="@+id/nav_restaurants"
-            android:icon="@drawable/ic_restaurant_menu_black_24dp"
+            android:icon="@drawable/ic_restaurant_white_24dp"
             android:title="@string/restaurants" />
         <item
             android:id="@+id/nav_entertainment"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_event_seat_white_24dp"
             android:title="@string/entertainment" />
         <item
             android:id="@+id/nav_landmarks"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_location_city_white_24dp"
             android:title="@string/landmarks" />
 
     </group>
@@ -25,7 +25,7 @@
         <menu>
             <item
                 android:id="@+id/nav_emergency"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_local_hospital_white_24dp"
                 android:title="@string/emergency" />
 
         </menu>

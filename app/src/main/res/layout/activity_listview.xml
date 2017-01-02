@@ -9,5 +9,4 @@
         android:id="@+id/listview_container"
         />
 
-
 </RelativeLayout>

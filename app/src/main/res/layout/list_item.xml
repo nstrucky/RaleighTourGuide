@@ -9,15 +9,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/black"
-        >
+        android:background="@android:color/black">
 
         <ImageView
             android:id="@+id/imageView_restaurant_preview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:alpha="0.75" />
+            android:alpha="0.60"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,9 +44,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white" />
 
-
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,23 +54,19 @@
             android:orientation="horizontal"
             android:padding="@dimen/padding_listitem">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_map_white_24dp" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_map_black_24dp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_chevron_right_black_24dp" />
-
+                android:src="@drawable/ic_navigate_next_white_24dp" />
 
         </LinearLayout>
 
-
     </RelativeLayout>
-
 
 </LinearLayout>
 

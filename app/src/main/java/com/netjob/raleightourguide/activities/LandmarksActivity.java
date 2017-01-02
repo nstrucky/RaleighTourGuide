@@ -33,7 +33,6 @@ public class LandmarksActivity extends AppCompatActivity implements AppActivityM
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mProgressDialog.show();
 
-
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.listview_container, new LandmarksFragment())

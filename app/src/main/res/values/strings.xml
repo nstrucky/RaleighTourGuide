@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RaleighTourGuide</string>
+    <string name="app_name">Raleigh Tour Guide</string>
     <string name="hotels">Hotels</string>
     <string name="restaurants">Restaurants</string>
     <string name="entertainment">Entertainment</string>
@@ -10,20 +10,20 @@
     <string name="rest_cat_mexican">Mexican</string>
     <string name="rest_cat_italian">Italian</string>
     <string name="rest_cat_southern">Southern</string>
-    <string name="rest_cat_other">Other</string>
+    <string name="cat_all">All</string>
 
     <string name="ent_cat_movietheatres">Venues</string>
     <string name="ent_cat_activities">Activities</string>
     <string name="ent_cat_museums">Museums</string>
-
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="message_emergency">You should probably just call 911</string>
+    <string name="ok">Ok</string>
+
 
 
     <!-- Establishment Names -->
@@ -50,16 +50,18 @@
     <string name="landmark_govmansion">Governors Mansion</string>
 
     <!-- Establishment Descriptions -->
-
     <string name="description_rest_buku">
         Located at the corner of Wilmington and Davie Street, bu•ku: Global Street Food is a local establishment telling a global story. Inspired by the pushcarts of street vendors in cities across the globe, we harvest an array of unique and distinct flavors and present them authentically in a virtual kaleidoscope of plates. The common link being, these are foods that people love.
     </string>
+
     <string name="description_rest_davidsDumplings">
         This unique eatery is owned and operated by Chef David Mao, a successful establishment owner and culinary innovator in Raleigh since 1976. Over the years, if you have eaten at the Mandarin House, The Abacus, The Great Mall of China, The China Cafe and Grille and most recently, the Duck and Dumpling, then you have enjoyed David\’s inspired menus.
     </string>
+
     <string name="description_rest_sushiblues">
         One of the triangle\'s coolest night spots, Sushi Blues Cafe offers some of the best Sushi and Japanese food, along a softly lit blues/jazz atmosphere.
     </string>
+
     <string name="description_hotel_sheraton">
         Make yourself at home here in Raleigh, in one of our 353 spacious and beautifully appointed guest rooms and suites, each of which features the famous Sheraton Signature Bed. Upgrade to our Club Rooms for exclusive lounge access. Host a successful meeting in our 18,000 square feet of recently updated, contemporary meeting and event space, and make use of our expert planning services.
     </string>
@@ -133,7 +135,6 @@
     </string>
 
     <!-- Establishment Phone Numbers -->
-
     <string name="phoneNumber_rest_buku">919-834-6963</string>
     <string name="phoneNumber_rest_sushiblues">919-664-8061</string>
     <string name="phoneNumber_rest_davidsDumplings">919-239-4536</string>
@@ -168,7 +169,7 @@
     <string name="address_rest_brioTuscan">4325 Glenwood Ave, Raleigh, NC</string>
     <string name="address_rest_casaCarbone">Oak Park Shopping Center, 6019 Glenwood Ave A, Raleigh, NC</string>
     <string name="address_rest_chubbytacos">2444 Wycliff Rd, Raleigh, NC</string>
-    <string name="address_rest_elrodeo">Great Clips Village at Townridge, 4112 Pleasant Valley Rd, Raleigh, NC</string>
+    <string name="address_rest_elrodeo">4112 Pleasant Valley Rd, Raleigh, NC</string>
     <string name="address_rest_driftwood">8460 Honeycutt Rd #112, Raleigh, NC</string>
     <string name="address_muse_ncmuseNatSci">11 W Jones St, Raleigh, NC</string>
     <string name="address_muse_ncmuseHist">5 E Edenton St, Raleigh, NC</string>
