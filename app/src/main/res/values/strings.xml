@@ -12,7 +12,7 @@
     <string name="rest_cat_southern">Southern</string>
     <string name="rest_cat_other">Other</string>
 
-    <string name="ent_cat_movietheatres">Movie Theaters</string>
+    <string name="ent_cat_movietheatres">Venues</string>
     <string name="ent_cat_activities">Activities</string>
     <string name="ent_cat_museums">Museums</string>
 
@@ -39,6 +39,15 @@
     <string name="rest_chubbytacos">Chubby\'s Tacos</string>
     <string name="rest_elrodeo">El Rodeo Mexican Restaurant</string>
     <string name="rest_driftwood">Driftwood Southern Kitchen</string>
+    <string name="muse_ncmusNatSci">North Carolina Museum of Natural Sciences</string>
+    <string name="muse_ncmuseHist">North Carolina Museum of History</string>
+    <string name="muse_ncmuseArt">North Carolina Museum of Art</string>
+    <string name="venue_southlandBallroom">Southland Ballroom</string>
+    <string name="venue_pourhouse">The Pour House Music Hall</string>
+    <string name="venue_redhatamp">Red Hat Amphitheater</string>
+    <string name="act_skyzone">Sky Zone Trampoline Park</string>
+    <string name="landmark_nccapitol">North Carolina State Capitol</string>
+    <string name="landmark_govmansion">Governors Mansion</string>
 
     <!-- Establishment Descriptions -->
 
@@ -87,6 +96,41 @@
         We feature a unique Chef\'s table featuring an open kitchen, a communal style semi-private room, and a large open dining room. Our ever-changing menu showcases the finest of ingredients from supporting local farms and purveyors, allowing us to make as much as possible in house.
     </string>
 
+    <string name="description_musncNatSci">
+        The North Carolina Museum of Natural Sciences is located in Raleigh, North Carolina. This museum is the oldest established museum in North Carolina and the largest museum of its kind in the Southeast.
+    </string>
+
+    <string name="description_muse_ncmuseHist">
+        An affiliate of the Smithsonian Institution,the North Carolina Museum of History is located in downtown Raleigh, North Carolina. Admission is free.
+    </string>
+
+    <string name="description_muse_ncmuseArt">
+        The North Carolina Museum of Art is an art museum in Raleigh, North Carolina which opened in 1956 as the first major museum collection in the country to be formed by State legislation and funding.
+    </string>
+
+    <string name="description_southlandBallroom">
+        Southland Ballroom is one of the premier live music venues in the Triangle area of North Carolina. Located in Raleigh\’s entertainment district, Glenwood South, Southland is in close proximity to many excellent restaurants and hotels.
+    </string>
+
+    <string name="description_pourhouse">
+        We love great music, great people, and great drinks at The Pour House Music Hall. We have been Raleigh\’s home for live music since 1997 and are focused on bringing you an eclectic mixture of the best local and nationally touring bands.
+    </string>
+
+    <string name="description_redhatamp">
+        Since opening on June 4, 2010, The Red Hat Amphitheater has become a beacon for live entertainment in the Southeast. Just steps from the fun and energy of downtown Raleigh\’s bars, clubs, galleries and restaurants, this 5,000-seat venue blends the state-of-the-art with the simply convenient.
+    </string>
+
+    <string name="description_act_skyzone">
+        Sky Zone is the world\’s first indoor trampoline park. We\’re the inventors of \“fun fitness\” and the makers of trampolines as far as the eye can see. We give you one of the greatest workouts ever combined with awesome, healthy fun. We\’ve been voted the number one \“out of the box\” workout and the \“best party ever.\”
+    </string>
+
+    <string name="description_landmark_nccapitol">
+        Architectural Historians internationally have acknowledged that the Capitol building is a masterpiece of American architecture. The North Carolina State Capitol Foundation has restored the furnishings of the building, including all of the original desks and dais, reconstructed chairs as needed and is in the process of conserving the artifacts, including statuary and plaques.
+    </string>
+
+    <string name="description_govmansion">
+        The first official residence built for North Carolina\'s governor was Tryon Palace in New Bern. Completed in 1770 as a home for royal governor William Tryon, and serving as the official seat of government, the structure was built largely with money accrued through taxation of the colony.
+    </string>
 
     <!-- Establishment Phone Numbers -->
 
@@ -102,6 +146,15 @@
     <string name="phoneNumber_rest_chubbytacos">919-781-4480</string>
     <string name="phoneNumber_rest_elrodeo">919-571-1188</string>
     <string name="phoneNumber_rest_drifwood">919-977-8360</string>
+    <string name="phoneNumber_muse_ncmuseNatSci">919-707-9800</string>
+    <string name="phoneNumber_muse_ncmuseHist">919-807-7900</string>
+    <string name="phoneNumber_muse_ncmuseArt">919-839-6262</string>
+    <string name="phoneNumber_venue_southlandBallroom">919-821-0023</string>
+    <string name="phoneNumber_venue_pourhouse">919-821-1120</string>
+    <string name="phoneNumber_venue_redhatamp">919-966-8800</string>
+    <string name="phoneNumber_act_skyzone">919-948-4450</string>
+    <string name="phoneNumber_landmark_nccapitol">919-733-4994</string>
+    <string name="phoneNumer_govmansion">919-733-3871</string>
 
 
     <!-- Establishment Addresses -->
@@ -117,5 +170,14 @@
     <string name="address_rest_chubbytacos">2444 Wycliff Rd, Raleigh, NC</string>
     <string name="address_rest_elrodeo">Great Clips Village at Townridge, 4112 Pleasant Valley Rd, Raleigh, NC</string>
     <string name="address_rest_driftwood">8460 Honeycutt Rd #112, Raleigh, NC</string>
+    <string name="address_muse_ncmuseNatSci">11 W Jones St, Raleigh, NC</string>
+    <string name="address_muse_ncmuseHist">5 E Edenton St, Raleigh, NC</string>
+    <string name="address_muse_ncmuseArt">2110 Blue Ridge Rd, Raleigh, NC</string>
+    <string name="address_venue_southlandBallroom">614 N West St, Raleigh, NC </string>
+    <string name="address_venue_pourhouse">224 S Blount St, Raleigh, NC</string>
+    <string name="address_venue_redhatamp">500 S McDowell St, Raleigh, NC</string>
+    <string name="address_act_skyzone">2101 Westinghouse Blvd, 111, Raleigh, NC</string>
+    <string name="address_landmark_nccapitol">1 E Edenton St, Raleigh, NC </string>
+    <string name="address_landmark_govmansion">200 N Blount St, Raleigh, NC</string>
 
 </resources>

@@ -10,16 +10,17 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.netjob.raleightourguide.AppActivityMethods;
-import com.netjob.raleightourguide.HotelsFragment;
+import com.netjob.raleightourguide.LandmarksFragment;
 import com.netjob.raleightourguide.R;
 
-public class HotelsActivity extends AppCompatActivity implements AppActivityMethods {
+public class LandmarksActivity extends AppCompatActivity implements AppActivityMethods {
 
-    protected ProgressDialog mProgressDialog;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_listview);
 
         ActionBar actionBar = getSupportActionBar();
@@ -32,12 +33,13 @@ public class HotelsActivity extends AppCompatActivity implements AppActivityMeth
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mProgressDialog.show();
 
+
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.listview_container, new HotelsFragment())
+                .replace(R.id.listview_container, new LandmarksFragment())
                 .commit();
-
     }
+
 
     @Override
     public void closeProgressDialog() {
@@ -57,4 +59,5 @@ public class HotelsActivity extends AppCompatActivity implements AppActivityMeth
             Toast.makeText(this, "Cannot load images, no internet connection", Toast.LENGTH_LONG).show();
         }
     }
+
 }

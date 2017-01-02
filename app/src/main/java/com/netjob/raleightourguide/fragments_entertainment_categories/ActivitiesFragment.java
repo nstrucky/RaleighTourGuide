@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.netjob.raleightourguide.CategoriesParentFragment;
+import com.netjob.raleightourguide.Establishment;
 import com.netjob.raleightourguide.R;
 
 /**
@@ -23,11 +24,13 @@ public class ActivitiesFragment extends CategoriesParentFragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText("Activities!");
-        return textView;
-    }
+    protected void initializeEstablishmentArrayList() {
 
+        mEstablishmentArrayList.add(new Establishment(
+                getString(R.string.act_skyzone),
+                getString(R.string.phoneNumber_act_skyzone),
+                getString(R.string.description_act_skyzone),
+                getString(R.string.address_act_skyzone)
+        ));
+    }
 }

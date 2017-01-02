@@ -90,6 +90,8 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_landmarks:
+                intent = new Intent(this, LandmarksActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.nav_emergency:

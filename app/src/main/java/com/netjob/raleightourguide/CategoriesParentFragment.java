@@ -1,22 +1,17 @@
 package com.netjob.raleightourguide;
 
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.net.ConnectivityManagerCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.CacheResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -76,8 +71,8 @@ public class CategoriesParentFragment extends Fragment {
     }
 
     public void closeActivityLoadingDialog() {
-        CategoryActivityMethods categoryActivity =
-                (CategoryActivityMethods) getActivity();
+        AppActivityMethods categoryActivity =
+                (AppActivityMethods) getActivity();
 
         categoryActivity.closeProgressDialog();
 

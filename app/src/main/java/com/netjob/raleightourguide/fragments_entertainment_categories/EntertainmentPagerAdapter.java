@@ -36,7 +36,7 @@ public class EntertainmentPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
 
             case 0:
-                return new MovieTheaterFragment();
+                return new VenuesFragment();
 
             case 1:
                 return new MuseumsFragment();

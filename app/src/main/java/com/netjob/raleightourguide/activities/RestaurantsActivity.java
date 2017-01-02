@@ -11,11 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.netjob.raleightourguide.CategoryActivityMethods;
+import com.netjob.raleightourguide.AppActivityMethods;
 import com.netjob.raleightourguide.R;
 import com.netjob.raleightourguide.fragments_restaurant_categories.RestaurantPagerAdapter;
 
-public class RestaurantsActivity extends AppCompatActivity implements CategoryActivityMethods {
+public class RestaurantsActivity extends AppCompatActivity implements AppActivityMethods {
 
     protected ProgressDialog mProgressDialog;
 
