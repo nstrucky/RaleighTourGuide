@@ -28,6 +28,7 @@ public class EntertainmentActivity extends AppCompatActivity implements AppActiv
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+
         checkNetworkConnection();
 
         mProgressDialog = new ProgressDialog(this);

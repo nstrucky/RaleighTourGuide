@@ -39,8 +39,7 @@ public class CategoriesParentFragment extends Fragment {
         mEstablishmentArrayList = new ArrayList<>();
         initializeEstablishmentArrayList();
 
-        PhotoIDAcquisitionTask photoIDAcquisition = new PhotoIDAcquisitionTask();
-        photoIDAcquisition.execute(new MyAsyncParams(this, mEstablishmentArrayList));
+
 
         arrayAdapter = new EstablishmentArrayAdapter(getActivity(), mEstablishmentArrayList);
 
@@ -58,6 +57,13 @@ public class CategoriesParentFragment extends Fragment {
         return fragmentRootView;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        PhotoIDAcquisitionTask photoIDAcquisition = new PhotoIDAcquisitionTask();
+        photoIDAcquisition.execute(new MyAsyncParams(this, mEstablishmentArrayList));
+    }
+
     protected void initializeEstablishmentArrayList() {
         //Override in subclasses to set up data
 
@@ -73,6 +79,7 @@ public class CategoriesParentFragment extends Fragment {
     public void closeActivityLoadingDialog() {
         AppActivityMethods categoryActivity =
                 (AppActivityMethods) getActivity();
+
 
         categoryActivity.closeProgressDialog();
 

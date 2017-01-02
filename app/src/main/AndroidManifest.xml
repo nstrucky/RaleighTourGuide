@@ -24,18 +24,23 @@
         <activity
             android:name=".activities.HotelsActivity"
             android:label="@string/hotels"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".activities.MainActivity"
+             />
         <activity
             android:name=".activities.RestaurantsActivity"
             android:label="@string/restaurants"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".activities.MainActivity"
+            />
         <activity
             android:name=".activities.EntertainmentActivity"
             android:label="@string/entertainment"
-            android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.LandmarksActivity"
+            android:parentActivityName=".activities.MainActivity"
+            />
+        <activity
+            android:name=".activities.LandmarksActivity"
             android:label="@string/landmarks"
-            android:parentActivityName=".activities.MainActivity"></activity>
+            android:parentActivityName=".activities.MainActivity"
+            ></activity>
     </application>
 
 </manifest>

@@ -23,10 +23,7 @@ import java.util.ArrayList;
  * Created by root on 12/29/16.
  */
 
-
-
-
-public class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsyncParams> {
+class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsyncParams> {
 
     private final String LOG_TAG = "PhotoIDAcquisition Task";
 
@@ -68,7 +65,7 @@ public class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsy
         final String PARAM_LOCATION = "location";
         final String PARAM_KEYWORD = "keyword";
         final String BASE_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-        final String KEY = "AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg";
+        final String KEY = "AIzaSyARmh7zrI8iw-DqPNQcL1_O84W5eLvgptA";
         final String LOCATION = "35.7754,-78.6382";
 
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
@@ -183,7 +180,7 @@ class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, String> {
         final String PARAM_PHOTOREFERENCE = "photoreference";
         final String PARAM_MAXHEIGHT = "maxheight";
         final String PARAM_MINHEIGHT = "minheight";
-        String key = "AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg";
+        String key = "AIzaSyARmh7zrI8iw-DqPNQcL1_O84W5eLvgptA";
         String photoID = currentEstablishment.getPhotoReferenceID();
         String maxheight = "800";
         String minheight = "600";
