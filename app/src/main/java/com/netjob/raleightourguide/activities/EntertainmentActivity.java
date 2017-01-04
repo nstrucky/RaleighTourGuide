@@ -2,6 +2,7 @@ package com.netjob.raleightourguide.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.design.widget.TabLayout;
@@ -32,7 +33,7 @@ public class EntertainmentActivity extends AppCompatActivity implements AppActiv
         checkNetworkConnection();
 
         mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.setMessage(getString(R.string.message_loading));
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mProgressDialog.show();
 
@@ -45,6 +46,7 @@ public class EntertainmentActivity extends AppCompatActivity implements AppActiv
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
+
     }
 
     @Override
@@ -62,7 +64,7 @@ public class EntertainmentActivity extends AppCompatActivity implements AppActiv
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
         if (networkInfo == null || !networkInfo.isConnected()) {
-            Toast.makeText(this, "Cannot load images, no internet connection", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.message_nointernet), Toast.LENGTH_LONG).show();
         }
     }
 }

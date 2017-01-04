@@ -27,7 +27,7 @@ public class RestaurantsActivity extends AppCompatActivity implements AppActivit
         checkNetworkConnection();
 
         mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.setMessage(getString(R.string.message_loading));
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mProgressDialog.show();
 
@@ -41,7 +41,6 @@ public class RestaurantsActivity extends AppCompatActivity implements AppActivit
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
-
 
     }
 
@@ -60,7 +59,7 @@ public class RestaurantsActivity extends AppCompatActivity implements AppActivit
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
         if (networkInfo == null || !networkInfo.isConnected()) {
-            Toast.makeText(this, "Cannot load images, no internet connection", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.message_nointernet), Toast.LENGTH_LONG).show();
         }
     }
 }

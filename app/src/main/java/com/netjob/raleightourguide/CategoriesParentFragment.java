@@ -3,6 +3,7 @@ package com.netjob.raleightourguide;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.netjob.raleightourguide.activities.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +26,7 @@ public class CategoriesParentFragment extends Fragment {
     protected ArrayList<Establishment> mEstablishmentArrayList;
     protected ListView listView;
     protected EstablishmentArrayAdapter arrayAdapter;
+    PhotoIDAcquisitionTask photoIDAcquisitionTask = null;
 
     public CategoriesParentFragment() {
         // Required empty public constructor
@@ -38,8 +42,6 @@ public class CategoriesParentFragment extends Fragment {
 
         mEstablishmentArrayList = new ArrayList<>();
         initializeEstablishmentArrayList();
-
-
 
         arrayAdapter = new EstablishmentArrayAdapter(getActivity(), mEstablishmentArrayList);
 
@@ -60,8 +62,8 @@ public class CategoriesParentFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        PhotoIDAcquisitionTask photoIDAcquisition = new PhotoIDAcquisitionTask();
-        photoIDAcquisition.execute(new MyAsyncParams(this, mEstablishmentArrayList));
+        photoIDAcquisitionTask = new PhotoIDAcquisitionTask();
+        photoIDAcquisitionTask.execute(new MyAsyncParams(this, mEstablishmentArrayList));
     }
 
     protected void initializeEstablishmentArrayList() {
@@ -76,13 +78,37 @@ public class CategoriesParentFragment extends Fragment {
 
     }
 
-    public void closeActivityLoadingDialog() {
-        AppActivityMethods categoryActivity =
-                (AppActivityMethods) getActivity();
-
-
-        categoryActivity.closeProgressDialog();
+    @Override
+    public void onPause() {
+        super.onPause();
+        cancelAsyncTask();
 
     }
 
+
+    public void cancelAsyncTask() {
+        if (photoIDAcquisitionTask != null) {
+            PhotoRetrievalTask innerTask = photoIDAcquisitionTask.getmPhotoRetrievalTask();
+
+            if (innerTask != null) {
+                innerTask.cancel(true);
+            }
+
+            photoIDAcquisitionTask.cancel(true);
+        }
+    }
+
+
+    public void closeActivityLoadingDialog() {
+
+        AppActivityMethods categoryActivity =
+                (AppActivityMethods) getActivity();
+
+        if (categoryActivity != null) {
+            categoryActivity.closeProgressDialog();
+        }
+
+        cancelAsyncTask();
+
+    }
 }

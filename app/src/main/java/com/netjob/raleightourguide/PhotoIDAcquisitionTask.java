@@ -17,7 +17,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 
 /**
  * Created by root on 12/29/16.
@@ -29,6 +28,7 @@ class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsyncParam
 
     private Establishment[] passedEstablishments = null;
     private MyAsyncParams passedMyAsyncParams = null;
+    private PhotoRetrievalTask mPhotoRetrievalTask;
 
     @Override
     protected MyAsyncParams doInBackground(MyAsyncParams... params) {
@@ -47,8 +47,12 @@ class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsyncParam
     protected void onPostExecute(MyAsyncParams myAsyncParams) {
         super.onPostExecute(myAsyncParams);
 
-        PhotoRetrievalTask photoRetrievalTask = new PhotoRetrievalTask();
-        photoRetrievalTask.execute(myAsyncParams);
+        mPhotoRetrievalTask = new PhotoRetrievalTask();
+        mPhotoRetrievalTask.execute(myAsyncParams);
+    }
+
+    public PhotoRetrievalTask getmPhotoRetrievalTask() {
+        return mPhotoRetrievalTask;
     }
 
     private MyAsyncParams setPhotoIDs(int index) {
@@ -65,7 +69,7 @@ class PhotoIDAcquisitionTask extends AsyncTask<MyAsyncParams, Void, MyAsyncParam
         final String PARAM_LOCATION = "location";
         final String PARAM_KEYWORD = "keyword";
         final String BASE_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-        final String KEY = "AIzaSyARmh7zrI8iw-DqPNQcL1_O84W5eLvgptA";
+        final String KEY = "AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg";
         final String LOCATION = "35.7754,-78.6382";
 
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
@@ -180,7 +184,7 @@ class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, String> {
         final String PARAM_PHOTOREFERENCE = "photoreference";
         final String PARAM_MAXHEIGHT = "maxheight";
         final String PARAM_MINHEIGHT = "minheight";
-        String key = "AIzaSyARmh7zrI8iw-DqPNQcL1_O84W5eLvgptA";
+        String key = "AIzaSyD03N7BhL74jj6H6Gy-p94NalHbcI3vxAg";
         String photoID = currentEstablishment.getPhotoReferenceID();
         String maxheight = "800";
         String minheight = "600";
@@ -218,6 +222,8 @@ class PhotoRetrievalTask extends AsyncTask<MyAsyncParams, Void, String> {
         }
         return bitmap;
     }
+
+
 
     @Override
     protected void onPostExecute(String s) {
